@@ -16,7 +16,7 @@
     <h1>MacraMicia</h1>
   </header>
 
-  <p th:text="'Current date and time: ' + ${date}"/>
+  <p th:text="'Current date and time: ' + ${date}"></p>
 
   <h2>About Us</h2>
 
@@ -34,8 +34,8 @@
 
   <h4>Our Personas</h4>
   <p>Holder of Website:</p>
-  <p><img src="../static/img/userpersona_lisa.jpg" width="400" alt="Lisa"></p>
+  <img src="../static/img/userpersona_lisa.jpg" width="400" th:src="@{img/userpersona_lisa.jpg}"/>
   <p>User of Website:</p>
-  <p><img src="../static/img/userpersona_claudia.jpg" width="400" alt="Claudia"></p>
+  <img src="../static/img/userpersona_claudia.jpg" width="400" th:src="@{img/userpersona_claudia.jpg}"/>
 </body>
 </html>
