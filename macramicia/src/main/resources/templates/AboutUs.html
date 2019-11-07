@@ -1,34 +1,41 @@
 <!DOCTYPE html >
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>About Us</title>
+  <meta charset="ISO-8859-1">
+  <title>About Us</title>
 </head>
 <body>
-	<header> 
-		<h1>MacraMicia</h1>
-	</header>
-		<nav>
-		<ul>
-			<li><a href="index.html">Home</a></li>
-        	<li><a tabindex="0" aria-current="page">About Us</a></li>
-       	</ul>   
-    </nav>
-	<h2>About Us</h2>
-	<h4>We Are</h4>
-	<p>Nastasja Stephanie Parschew</p>
-	<p>Lukas Ludwig</p>
-	<p>Henriette Sand<p>
-	<h4>Our Projekt Goals</h4>
-	<ol>
-		<li>sharing artwork</li>
-		<li>generating income</li>
-		<li>gaining publicity in art community</li>
-	</ol>
-	<h4>Our Personas</h4>
-	<p>
-		<img src="../static/img/userpersona_lisa.jpg" alt="Lisa">
-		<img src="../static/img/userpersona_claudia.jpg" alt="Claudia">
-	</p>>
+  <header>
+    <h1>MacraMicia</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a tabindex="0" aria-current="page">About Us</a></li>
+    </ul>
+  </nav>
+
+  <p th:text="'Current date and time: ' + ${date}"/>
+
+  <h2>About Us</h2>
+
+  <h4>We Are</h4>
+  <p>Nastasja Stephanie Parschew</p>
+  <p>Lukas Ludwig</p>
+  <p>Henriette Sand<p>
+
+  <h4>Our Projekt Goals</h4>
+  <ol>
+    <li>sharing artwork</li>
+    <li>generating income</li>
+    <li>gaining publicity in art community</li>
+  </ol>
+
+  <h4>Our Personas</h4>
+  <p>
+    <img src="../static/img/userpersona_lisa.jpg" alt="Lisa">
+    <img src="../static/img/userpersona_claudia.jpg" alt="Claudia">
+  </p>>
 </body>
 </html>
