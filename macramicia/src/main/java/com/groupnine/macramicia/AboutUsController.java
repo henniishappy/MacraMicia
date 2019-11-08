@@ -11,6 +11,6 @@ public class AboutUsController {
 	@GetMapping("/AboutUs")
 	public String date(Model model) {
 		model.addAttribute("date", new Date(System.currentTimeMillis()));
-		return "AboutUs";
+		return "aboutUs";
 	}
 }
