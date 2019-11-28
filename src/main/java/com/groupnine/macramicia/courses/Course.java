@@ -111,18 +111,29 @@ public class Course {
                     "particpants. More than " +  maxParticipants + " people" +
                     " have already signed up for this course.");
         User[] updatedP = new Participants[maxParticipants];
-        //TODO copy existing participants
-
+        for (int i = 0; i < getTakenSpots(); i++) {
+            updatedP[i] = this.participants[i];
+        }
+        this.participants = updatedP;
     }
 
     public void addParticipant(User newP) {
         if (isFull()) throw new RuntimeException("This course is already full");
-        this.particpants[getNumberOfParticipants()] = newP;
+        this.participants[getNumberOfParticipants()] = newP;
     }
 
     public void removeParticipant(User cancellation) {
-        //TODO delete participant
+        if (!isParticipant(cancellation))
+            throw new IllegalArgumentException("This User is not a participant of this course");
+        List<User> userList = Array.asList(this.participants);
+        userList.remove(cancellation);
+        this.participants
     }
 
+    private boolean isParticipant(User person) {
+        List<User> userList = Array.asList(this.participants);
+        return userList.contains(person);
+        this.participants = userList.toArray(this.participants);
+    }
      */
 }
