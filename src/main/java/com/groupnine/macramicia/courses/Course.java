@@ -1,5 +1,7 @@
 package com.groupnine.macramicia.courses;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,9 +14,13 @@ public class Course {
 	private Integer id;
     private String title;
     private String description;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
     private String venue;
     private User[] participants;
+    private int maxSpots;
 
     private static List<Course> courses = new ArrayList<>();
 
@@ -22,11 +28,12 @@ public class Course {
         this.title = "Learn Macramee";
         this.description = "Are you interested in macramee but you do not know " +
                 "how to do it? Let's create something together. I'll show you " +
-                "how to make your won wall hanging or planthanger, explaining " +
+                "how to make your own wall hanging or planthanger, explaining " +
                 "to you step by step how to knot.";
         this.date = date;
         this.venue = "Friedrichshain";
         this.participants = new User[5];
+        this.maxSpots = participants.length;
     }
 
     public String getTitle() {
@@ -61,13 +68,17 @@ public class Course {
         this.venue = venue;
     }
 
-    public int getMaxParticipants() {
-        return this.participants.length;
+    public void setMaxSpots(int maxSpots) {
+        this.maxSpots = maxSpots;
+    }
+
+    public int getMaxSpots() {
+        return maxSpots;
     }
 
     public int getTakenSpots() {
         int taken = 0;
-        for (int i = 0; i < getMaxParticipants(); i++) {
+        for (int i = 0; i < maxSpots; i++) {
             if(participants[i] != null)
                 taken++;
         }
@@ -75,7 +86,8 @@ public class Course {
     }
 
     public int getFreeSpots() {
-        return getMaxParticipants() - getTakenSpots();
+        System.out.println(maxSpots - getTakenSpots());
+        return maxSpots - getTakenSpots();
     }
 
     public static boolean addCourse(Course c) {
@@ -87,7 +99,7 @@ public class Course {
     }
 
     public Boolean isFull() {
-        if (getTakenSpots() >= getMaxParticipants()) return true;
+        if (getTakenSpots() >= maxSpots) return true;
         else return false;
     }
 

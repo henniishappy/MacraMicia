@@ -20,14 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:if="${courses.empty}"></tr>
+      <tr th:if="${courses.empty}">
         <td colspan="2">No courses available</td>
+      </tr>
       <tr th:each="course: ${courses}">
         <td th:text="${course.title}"/>
         <td th:text="${course.description}"/>
         <td th:text="${course.date}"/>
         <td th:text="${course.venue}"/>
-        <td th:text="${course.getFreeSpots()}"/>
+        <td th:text="${course.getFreeSpots()}" align="center"/>
       </tr>
     </tbody>
   </table>

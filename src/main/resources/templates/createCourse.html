@@ -9,21 +9,36 @@
     <h1>Create new course</h1>
   </header>
   <div th:insert="fragments/navigation.html :: navigation"></div>
-  <form action="#" th:object="${course}" th:action="@{/courses/add}" method="post">
-    <label>Title</label><br>
-    <input name="title" type="text"><br>
+  <form action="#" th:action="@{/courses/add}" th:object="${course}" method="post">
+    <div class="field">
+      <label>Title*</label><br>
+      <input name="title" type="text" th:field="*{title}" required><br>
+      <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>
+    </div>
 
-    <label>Description</label><br>
-    <input name="description" type="text"><br>
+    <div class="field">
+      <label>Description</label><br>
+      <input name="description" type="text" th:field="*{description}"><br>
+      <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</span>
+    </div>
 
-    <label>Date</label><br>
-    <input name="date" type="date"><br>
+    <div class="field">
+      <label>Date*</label><br>
+      <input name="date" type="date" th:field="*{date}" required><br>
+      <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Name Error</span>
+    </div>
 
-    <label>Venue</label><br>
-    <input name="venue" type="text"><br>
+    <div class="field">
+      <label>Venue*</label><br>
+      <input name="venue" type="text" th:field="*{venue}" required><br>
+      <span th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Name Error</span>
+    </div>
 
-    <label>Maximum Spots</label>
-    <input name="maxSpots" type="number"><br>
+    <div class="field">
+      <label>Maximum Spots</label><br>
+      <input name="maxSpots" type="number" min="1" th:field="*{maxSpots}"><br>
+      <span th:if="${#fields.hasErrors('maxSpots')}" th:errors="*{maxSpots}">Name Error</span>
+    </div>
 
     <input type="submit" value="Create">
   </form>
