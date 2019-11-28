@@ -8,14 +8,7 @@
   <header>
     <h1>Create new course</h1>
   </header>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a tabindex="0" aria-current="page">Create Course</a></li>
-      <li><a href="/courses/all">Courses</a></li>
-      <li><a href="/aboutUs">About Us</a></li>
-    </ul>
-  </nav>
+  <div th:insert="fragments/navigation.html :: navigation"></div>
   <form action="#" th:object="${course}" th:action="@{/courses/add}" method="post">
     <label>Title</label><br>
     <input name="title" type="text"><br>

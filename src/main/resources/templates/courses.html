@@ -8,14 +8,7 @@
   <header>
     <h1>Courses</h1>
   </header>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/courses/add">Create Course</a></li>
-      <li><a tabindex="0" aria-current="page">Courses</a></li>
-      <li><a href="/aboutUs">About Us</a></li>
-    </ul>
-  </nav>
+  <div th:insert="fragments/navigation.html :: navigation"></div>
   <table>
     <thead>
       <tr>

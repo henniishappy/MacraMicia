@@ -8,14 +8,7 @@
   <header>
     <h1>MacraMicia</h1>
   </header>
-  <nav>
-    <ul>
-      <li><a tabindex="0" aria-current="page">Home</a></li>
-      <li><a href="/courses/add">Create Course</a></li>
-      <li><a href="/courses/all">Courses</a></li>
-      <li><a href="/aboutUs">About Us</a></li>
-    </ul>
-  </nav>
+  <div th:insert="fragments/navigation.html :: navigation"></div>
   <p>Welcome to our Website!</p>
 </body>
 </html>
