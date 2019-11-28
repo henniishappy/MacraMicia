@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Controller
 public class AboutUsController {
-	@GetMapping("/AboutUs")
+	@GetMapping("/aboutUs")
 	public String date(Model model) {
 		model.addAttribute("date", new Date(System.currentTimeMillis()));
 		return "aboutUs";

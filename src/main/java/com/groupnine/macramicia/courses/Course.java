@@ -10,13 +10,8 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-
-    @Column
     private String title;
-
-    @Column
     private String description;
-
     private Date date;
     private String venue;
     private User[] participants;
@@ -70,9 +65,9 @@ public class Course {
         return this.participants.length;
     }
 
-    public int getNumberOfParticipants() {
+    public int getTakenSpots() {
         int taken = 0;
-        for(int i = 0; i < getMaxParticipants(); i++) {
+        for (int i = 0; i < getMaxParticipants(); i++) {
             if(participants[i] != null)
                 taken++;
         }
@@ -80,7 +75,7 @@ public class Course {
     }
 
     public int getFreeSpots() {
-        return getMaxParticipants() - getNumberOfParticipants();
+        return getMaxParticipants() - getTakenSpots();
     }
 
     public static boolean addCourse(Course c) {
@@ -92,12 +87,14 @@ public class Course {
     }
 
     public Boolean isFull() {
-        if (getNumberOfParticipants() == getMaxParticipants()) return true;
+        if (getTakenSpots() >= getMaxParticipants()) return true;
         else return false;
     }
 
+    /*
+
     public void updateMaxParticipants(int maxParticipants) {
-        if (getNumberOfParticipants() > maxParticipants)
+        if (getTakenSpots() > maxParticipants)
             throw new IllegalArgumentException("Cannot reduce number of " +
                     "particpants. More than " +  maxParticipants + " people" +
                     " have already signed up for this course.");
@@ -114,4 +111,6 @@ public class Course {
     public void removeParticipant(User cancellation) {
         //TODO delete participant
     }
+
+     */
 }

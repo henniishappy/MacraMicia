@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Create Course</title>
 </head>
 <body>
-  $END$
+  <header>
+    <h1>Create new course</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a tabindex="0" aria-current="page">Create Course</a></li>
+      <li><a href="/courses/all">Courses</a></li>
+      <li><a href="/aboutUs">About Us</a></li>
+    </ul>
+  </nav>
+  <form action="#" th:object="${course}" th:action="@{/courses/add}" method="post">
+    <label>Title</label><br>
+    <input name="title" type="text"><br>
+
+    <label>Description</label><br>
+    <input name="description" type="text"><br>
+
+    <label>Date</label><br>
+    <input name="date" type="date"><br>
+
+    <label>Venue</label><br>
+    <input name="venue" type="text"><br>
+
+    <label>Maximum Spots</label>
+    <input name="maxSpots" type="number"><br>
+
+    <input type="submit" value="Create">
+  </form>
 </body>
 </html>
