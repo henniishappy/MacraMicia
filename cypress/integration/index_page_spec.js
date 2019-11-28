@@ -3,7 +3,7 @@ describe('The index page', function() {
     cy.visit('/')
   })
 
-  it('displays the heading', function() {
+  it('displays the website name', function() {
     cy.contains('MacraMicia')
   })
 
@@ -19,6 +19,19 @@ describe('The index page', function() {
   it('lets You visit the AboutUs page', function() {
     cy.contains('About Us').click()
     cy.url()
-      .should('include', '/AboutUs')
-    })
+      .should('include', '/aboutUs')
+  })
+
+  it('lets You visit the Courses page', function() {
+    cy.contains('Courses').click()
+    cy.url()
+      .should('include', '/courses/all')
+  })
+
+    it('lets You visit the Create Course page', function() {
+    cy.contains('Create Course').click()
+    cy.url()
+      .should('include', '/courses/add')
+  })
+
 })
