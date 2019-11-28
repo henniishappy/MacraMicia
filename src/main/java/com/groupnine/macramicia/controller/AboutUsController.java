@@ -1,4 +1,4 @@
-package com.groupnine.macramicia;
+package com.groupnine.macramicia.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Controller
 public class AboutUsController {
+
 	@GetMapping("/aboutUs")
 	public String date(Model model) {
 		model.addAttribute("date", new Date(System.currentTimeMillis()));

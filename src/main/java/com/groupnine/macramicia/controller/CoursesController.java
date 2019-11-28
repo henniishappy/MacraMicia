@@ -1,4 +1,4 @@
-package com.groupnine.macramicia;
+package com.groupnine.macramicia.controller;
 
 import com.groupnine.macramicia.courses.Course;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/courses")
 public class CoursesController {
+
 	@GetMapping(value = "/add")
 	public String addCourse(@Valid Course course, Model model) {
 		model.addAttribute("course", course);
