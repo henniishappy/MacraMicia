@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        lang="en">
 <head>
     <link href="/static/css/navigation.css" rel="stylesheet"/>
     <meta charset="UTF-8">
@@ -11,12 +12,19 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/courses/add">Create Course</a></li>
+
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/courses/add">Create Course</a>
+                </li>
+
                 <li><a href="/courses/all">Courses</a></li>
+
                 <li><a href="/aboutUs">About Us</a></li>
+
                 <li sec:authorize="isAuthenticated()">
                     <a href="/logout">Logout</a>
                 </li>
+
                 <li sec:authorize="isAnonymous()">
                     <a href="/login">Login</a>
                 </li>
