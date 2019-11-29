@@ -1,4 +1,4 @@
-package com.groupnine.macramicia.courses;
+package com.groupnine.macramicia.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,5 +12,6 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
 }

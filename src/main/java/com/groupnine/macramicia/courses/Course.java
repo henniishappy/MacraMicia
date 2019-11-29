@@ -1,5 +1,6 @@
 package com.groupnine.macramicia.courses;
 
+import com.groupnine.macramicia.model.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -99,8 +100,7 @@ public class Course {
     }
 
     public Boolean isFull() {
-        if (getTakenSpots() >= maxSpots) return true;
-        else return false;
+        return getTakenSpots() >= maxSpots;
     }
 
     /*

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="Error ${statuscode}"></title>
+</head>
+<body>
+    <div th:insert="fragments/navigation.html :: navigation"></div>
+    <p th:text="${errormsg}"></p>
+</body>
+</html>

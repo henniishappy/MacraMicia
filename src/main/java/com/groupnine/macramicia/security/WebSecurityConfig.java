@@ -15,7 +15,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
                     .antMatchers("/courses/add").hasRole("ADMIN")
                     .and()
                 .formLogin()
@@ -24,15 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .passwordParameter("password")
                     .and()
                 .logout()
-                    .permitAll().
-                    logoutSuccessUrl("/");
+                    .permitAll()
+                    .logoutSuccessUrl("/logoutsuccess");
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("ADMIN");
-
+                .withUser("user").password("{noop}password").roles("USER");
     }
 }
