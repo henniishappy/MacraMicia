@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <link href="/static/css/navigation.css" rel="stylesheet"/>
     <meta charset="UTF-8">
@@ -13,8 +14,12 @@
                 <li><a href="/courses/add">Create Course</a></li>
                 <li><a href="/courses/all">Courses</a></li>
                 <li><a href="/aboutUs">About Us</a></li>
-                <li> <a href="/login">Login</a> </li>
-                <li><a href="/logout">Logout</a> </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="/logout">Logout</a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a href="/login">Login</a>
+                </li>
             </ul>
         </nav>
     </div>
