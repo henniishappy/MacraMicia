@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -13,9 +15,20 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @NotNull
+    @NotEmpty
     private String firstName;
+
+    @NotNull
+    @NotEmpty
     private String lastName;
+
+    @NotNull
+    @NotEmpty
     private String username;
+
+    @NotNull
+    @NotEmpty
     private String email;
 
     public User(String firstName, String lastName, String username, String email) {
@@ -25,6 +38,7 @@ public class User {
         this.email = email;
     }
 
+    /* Getters and Setters */
 
     public Long getId() {
         return id;
