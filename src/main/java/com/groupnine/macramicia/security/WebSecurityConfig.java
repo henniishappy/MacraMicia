@@ -23,13 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/courses/add").hasRole("ADMIN")
                     .and()
                 .formLogin()
+                    .loginPage("/login")
                     .defaultSuccessUrl("/")
-                    .usernameParameter("user")
+                    .usernameParameter("username")
                     .passwordParameter("password")
                     .and()
                 .logout()
-                    .permitAll()
-                    .logoutSuccessUrl("/logoutsuccess");
+                    .permitAll();
+                    //.logoutSuccessUrl("/logoutsuccess");
     }
 
 
@@ -50,12 +51,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     IDialect springSecurityDialect() {
         return new SpringSecurityDialect();
     }
-
-    /*
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER");
-    }*/
 }
