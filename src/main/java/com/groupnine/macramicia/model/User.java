@@ -38,6 +38,8 @@ public class User {
         this.email = email;
     }
 
+    public User()  { }
+
     /* Getters and Setters */
 
     public Long getId() {
