@@ -1,8 +1,5 @@
 language: java
-install: true
-jdk: oraclejdk12
-branches:
-  only:
-    - master
+jdk:
+  - oraclejdk12
 script:
-  - gradle build
+  - ./gradlew clean build
