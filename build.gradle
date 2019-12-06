@@ -23,7 +23,8 @@ dependencies {
 	testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.1.RELEASE'
 	compile("org.springframework.boot:spring-boot-starter-security")
 
-	compile 'org.springframework.security:spring-security-test:4.0.1.RELEASE'
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.2.1.RELEASE'
+	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.0.0.RELEASE'
 
 	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
 
