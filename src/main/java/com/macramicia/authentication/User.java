@@ -1,4 +1,4 @@
-package com.macramicia.security;
+package com.macramicia.authentication;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

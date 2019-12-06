@@ -1,4 +1,4 @@
-package com.macramicia.security;
+package com.macramicia.authentication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
