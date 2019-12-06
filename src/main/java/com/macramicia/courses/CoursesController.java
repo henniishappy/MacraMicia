@@ -1,6 +1,5 @@
-package com.groupnine.macramicia.controller;
+package com.macramicia.courses;
 
-import com.groupnine.macramicia.courses.Course;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

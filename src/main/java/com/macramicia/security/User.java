@@ -1,4 +1,4 @@
-package com.groupnine.macramicia.model;
+package com.macramicia.security;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

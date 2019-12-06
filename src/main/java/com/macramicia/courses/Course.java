@@ -1,6 +1,6 @@
-package com.groupnine.macramicia.courses;
+package com.macramicia.courses;
 
-import com.groupnine.macramicia.model.User;
+import com.macramicia.security.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;

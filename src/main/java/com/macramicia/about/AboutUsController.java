@@ -1,4 +1,4 @@
-package com.groupnine.macramicia.controller;
+package com.macramicia.about;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

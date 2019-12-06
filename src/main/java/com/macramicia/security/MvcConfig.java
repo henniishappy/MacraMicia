@@ -1,4 +1,4 @@
-package com.groupnine.macramicia.security;
+package com.macramicia.security;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
