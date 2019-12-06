@@ -1,4 +1,4 @@
-package com.groupnine.macramicia;
+package com.macramicia;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
