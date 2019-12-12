@@ -11,26 +11,30 @@
     <div th:fragment="navigation">
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/" data-cy="homeNav">Home</a></li>
 
                 <li sec:authorize="hasRole('ADMIN')">
-                    <a href="/courses/add">Create Course</a>
+                    <a href="/courses/add" data-cy="createCourseNav">Create Course</a>
                 </li>
 
-                <li><a href="/courses/all">Courses</a></li>
+                <li>
+                    <a href="/courses/all" data-cy="coursesNav">Courses</a>
+                </li>
 
-                <li><a href="/aboutUs">About Us</a></li>
+                <li>
+                    <a href="/aboutUs" data-cy="aboutNav">About Us</a>
+                </li>
 
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/login?logout">Logout</a>
+                    <a href="/login?logout" data-cy="logoutNav">Logout</a>
                 </li>
 
                 <li sec:authorize="isAnonymous()">
-                    <a href="/login">Login</a>
+                    <a href="/login" data-cy="loginNav">Login</a>
                 </li>
 
                 <li sec:authorize="isAnonymous()">
-                    <a href="/user/registration">Sign up</a>
+                    <a href="/registration" data-cy="signUpNav">Sign up</a>
                 </li>
             </ul>
         </nav>

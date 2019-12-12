@@ -5,7 +5,11 @@
     <title>Login</title>
 </head>
 <body>
+    <header>
+        <h1>MacraMicia</h1>
+    </header>
     <div th:insert="fragments/navigation.html :: navigation"></div>
+    <h2>Login</h2>
 
     <form name="f" th:action="@{/login}" method="post">
 
@@ -16,13 +20,13 @@
             You have been logged out.
         </div>
         <br>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username"/>
+        <label for="username" data-cy="loginLabelUsername">Username</label>
+        <input type="text" id="username" name="username" data-cy="loginInputUsername"/>
         <br>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password"/>
+        <label for="password" data-cy="loginLabelPassword">Password</label>
+        <input type="password" id="password" name="password" data-cy="loginInputPassword"/>
         <div class="form-actions">
-            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="btn" data-cy="loginButton">Log in</button>
         </div>
     </form>
 </body>

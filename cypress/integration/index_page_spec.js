@@ -8,30 +8,43 @@ describe('The index page', function() {
   })
 
   it('displays the links to other pages', function() {
-    cy.contains('Home')
-    cy.contains('About Us')
+    cy.get('[data-cy=homeNav]')
+    cy.get('[data-cy=coursesNav]')
+    cy.get('[data-cy=aboutNav]')
+    cy.get('[data-cy=loginNav]')
+    cy.get('[data-cy=signUpNav]')
   })
 
   it('displays the welcoming message', function() {
     cy.contains('Welcome to our Website!')
   })
 
+  it('lets You visit the Index page', function() {
+    cy.get('[data-cy=homeNav]').click()
+  })
+
+  it('lets You visit the Courses page', function() {
+    cy.get('[data-cy=coursesNav]').click()
+    cy.url()
+        .should('include', '/courses/all')
+  })
+
   it('lets You visit the AboutUs page', function() {
-    cy.contains('About Us').click()
+    cy.get('[data-cy=aboutNav]').click()
     cy.url()
       .should('include', '/aboutUs')
   })
 
-  it('lets You visit the Courses page', function() {
-    cy.contains('Courses').click()
+  it('lets You visit the Login page', function() {
+    cy.get('[data-cy=loginNav]').click()
     cy.url()
-      .should('include', '/courses/all')
+      .should('include', '/login')
   })
 
-    it('lets You visit the Create Course page', function() {
-    cy.contains('Create Course').click()
+  it('lets You visit the SignUp page', function() {
+    cy.get('[data-cy=signUpNav]').click()
     cy.url()
-      .should('include', '/courses/add')
+        .should('include', '/registration')
   })
 
 })
