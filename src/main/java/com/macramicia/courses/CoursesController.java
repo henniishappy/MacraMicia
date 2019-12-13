@@ -6,10 +6,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/courses")
 public class CoursesController {
+
+	private CourseRepository courses;
 
 	@GetMapping(value = "/new")
 	public String addCourse(@Valid Course course, Model model) {
@@ -22,14 +25,14 @@ public class CoursesController {
 		if (result.hasErrors()) {
 			return "createCourse";
 		}
-		Course.addCourse(course);
-		model.addAttribute("courses", Course.getCourses());
+		courses.save(course);
+		model.addAttribute("courses", courses.findAll());
 		return "courses";
 	}
 
 	@GetMapping(value = "/all")
 	public String showAllCourses(Model model) {
-		model.addAttribute("courses", Course.getCourses());
+		model.addAttribute("courses", courses.findAll());
 		return "courses";
 	}
 }

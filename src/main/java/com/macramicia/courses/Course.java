@@ -20,23 +20,21 @@ public class Course {
     private Date date;
 
     private String venue;
-    private User[] participants;
+    //private User[] participants;
     private int maxSpots;
 
-    private static List<Course> courses = new ArrayList<>();
-
-    public Course(Date date) {
-        this.title = "Learn Macramee";
-        this.description = "Are you interested in macramee but you do not know " +
-                "how to do it? Let's create something together. I'll show you " +
-                "how to make your own wall hanging or planthanger, explaining " +
-                "to you step by step how to knot.";
+    public Course(String title, String description, Date date, String venue) {
+        this.title = title;
+        this.description = description;
         this.date = date;
-        this.venue = "Friedrichshain";
-        this.participants = new User[5];
-        this.maxSpots = participants.length;
+        this.venue = venue;
+        //this.participants = new User[5];
+        this.maxSpots = 5;
     }
 
+    public int getId() {
+        return this.getId();
+    }
     public String getTitle() {
         return title;
     }
@@ -77,6 +75,7 @@ public class Course {
         return maxSpots;
     }
 
+    /*
     public int getTakenSpots() {
         int taken = 0;
         for (int i = 0; i < maxSpots; i++) {
@@ -91,19 +90,9 @@ public class Course {
         return maxSpots - getTakenSpots();
     }
 
-    public static boolean addCourse(Course c) {
-        return courses.add(c);
-    }
-
-    public static List getCourses() {
-        return courses;
-    }
-
     public Boolean isFull() {
         return getTakenSpots() >= maxSpots;
     }
-
-    /*
 
     public void updateMaxParticipants(int maxParticipants) {
         if (getTakenSpots() > maxParticipants)

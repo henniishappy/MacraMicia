@@ -22,15 +22,15 @@
       </tr>
     </thead>
     <tbody data-cy="tableCoursesBody">
-      <tr th:if="${courses.empty}">
+     <!-- <tr th:if="${courses.empty}">
         <td colspan="2" data-cy="tableCoursesEmpty">No courses available</td>
-      </tr>
+      </tr> -->
       <tr th:each="course: ${courses}">
         <td th:text="${course.title}"/>
         <td th:text="${course.description}"/>
         <td th:text="${course.date}"/>
         <td th:text="${course.venue}"/>
-        <td th:text="${course.getFreeSpots()}" align="center"/>
+        <td th:text="${course.getMaxSpots}" align="center"/>
       </tr>
     </tbody>
   </table>
