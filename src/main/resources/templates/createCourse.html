@@ -11,7 +11,7 @@
   <div th:insert="fragments/navigation.html :: navigation"></div>
   <h2>Create a new course</h2>
 
-  <form action="#" th:action="@{/courses/add}" th:object="${course}" method="post">
+  <form action="#" th:action="@{/courses/show}" th:object="${course}" method="post">
     <div class="field">
       <label>Title*</label><br>
       <input name="title" type="text" th:field="*{title}" required><br>

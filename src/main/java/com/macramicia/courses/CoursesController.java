@@ -11,13 +11,13 @@ import javax.validation.Valid;
 @RequestMapping("/courses")
 public class CoursesController {
 
-	@GetMapping(value = "/add")
+	@GetMapping(value = "/new")
 	public String addCourse(@Valid Course course, Model model) {
 		model.addAttribute("course", course);
 		return "createCourse";
 	}
 
-	@PostMapping(value = "/add")
+	@PostMapping(value = "/show")
 	public String addCourse(@Valid Course course, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createCourse";
