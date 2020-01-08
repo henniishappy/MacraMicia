@@ -9,19 +9,19 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+//@Table(name = "course", schema ="PUBLIC")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
     private String title;
     private String description;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-
     private String venue;
-    //private User[] participants;
     private int maxSpots;
+    @OneToMany
+    private List<User> user;
 
     public Course(String title, String description, Date date, String venue) {
         this.title = title;

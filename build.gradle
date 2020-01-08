@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.groupnine'
+group = 'com.macramicia'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -16,18 +16,17 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile 'org.hibernate:hibernate-core:5.4.9.Final'
-	implementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-	testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.1.RELEASE'
-	compile("org.springframework.boot:spring-boot-starter-security")
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.2.1.RELEASE'
-	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.0.0.RELEASE'
+	runtimeOnly 'com.h2database:h2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api'
 
 	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
-	runtimeOnly 'com.h2database:h2'
 }
 
 test {

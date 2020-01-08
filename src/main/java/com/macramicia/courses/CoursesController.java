@@ -30,14 +30,14 @@ public class CoursesController {
 		if (result.hasErrors()) {
 			return "createCourse";
 		}
-		courseRepository.save(course);
-		model.addAttribute("courses", courseRepository.findAll());
+		courses.save(course);
+		model.addAttribute("courses", courses.findAll());
 		return "courses";
 	}
 
 	@GetMapping(value = "/all")
 	public String showAllCourses(Model model) {
-		model.addAttribute("courses", courseRepository.findAll());
+		model.addAttribute("courses", courses.findAll());
 		return "courses";
 	}
 }

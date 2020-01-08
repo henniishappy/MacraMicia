@@ -1,9 +1,8 @@
-package com.macramicia.courses;
+package com.macramicia.authentication;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course, Long> {
-
+public interface UserRepository extends JpaRepository<User, Long> {
 }

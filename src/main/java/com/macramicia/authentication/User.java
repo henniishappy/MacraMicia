@@ -1,34 +1,19 @@
 package com.macramicia.authentication;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @NotEmpty
     private String firstName;
-
-    @NotNull
-    @NotEmpty
     private String lastName;
-
-    @NotNull
-    @NotEmpty
     private String username;
-
-    @NotNull
-    @NotEmpty
     private String email;
 
     public User(String firstName, String lastName, String username, String email) {
