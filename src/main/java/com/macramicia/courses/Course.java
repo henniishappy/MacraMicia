@@ -3,13 +3,13 @@ package com.macramicia.courses;
 import com.macramicia.authentication.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "course", schema ="PUBLIC")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,19 +17,22 @@ public class Course {
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDateTime date;
     private String venue;
     private int maxSpots;
     @OneToMany
     private List<User> user;
 
-    public Course(String title, String description, Date date, String venue) {
+    public Course(String title, String description, LocalDateTime date, String venue, int maxSpots) {
         this.title = title;
         this.description = description;
         this.date = date;
         this.venue = venue;
         //this.participants = new User[5];
-        this.maxSpots = 5;
+        this.maxSpots = maxSpots;
+    }
+
+    public Course() {
     }
 
     public int getId() {
@@ -51,11 +54,11 @@ public class Course {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
