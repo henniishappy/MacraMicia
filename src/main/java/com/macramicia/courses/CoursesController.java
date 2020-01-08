@@ -1,5 +1,6 @@
 package com.macramicia.courses;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +13,11 @@ import java.util.List;
 @RequestMapping("/courses")
 public class CoursesController {
 
-	private CourseRepository courses;
+	private CourseRepository courseRepository;
+
+	public CoursesController(CourseRepository courseRepository) {
+		this.courseRepository = courseRepository;
+	}
 
 	@GetMapping(value = "/new")
 	public String addCourse(@Valid Course course, Model model) {
@@ -25,14 +30,14 @@ public class CoursesController {
 		if (result.hasErrors()) {
 			return "createCourse";
 		}
-		courses.save(course);
-		model.addAttribute("courses", courses.findAll());
+		courseRepository.save(course);
+		model.addAttribute("courses", courseRepository.findAll());
 		return "courses";
 	}
 
 	@GetMapping(value = "/all")
 	public String showAllCourses(Model model) {
-		model.addAttribute("courses", courses.findAll());
+		model.addAttribute("courses", courseRepository.findAll());
 		return "courses";
 	}
 }
