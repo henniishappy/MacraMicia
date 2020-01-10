@@ -1,25 +1,30 @@
 package com.macramicia.courses;
 
-import com.macramicia.authentication.User;
+import com.macramicia.user.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
 public class Course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
     private String title;
+
     private String description;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime date;
+
     private String venue;
+
     private int maxSpots;
+
     @OneToMany
     private List<User> user;
 
@@ -28,16 +33,15 @@ public class Course {
         this.description = description;
         this.date = date;
         this.venue = venue;
-        //this.participants = new User[5];
         this.maxSpots = maxSpots;
     }
 
-    public Course() {
-    }
+    public Course() { }
 
     public int getId() {
-        return this.getId();
+        return this.id;
     }
+
     public String getTitle() {
         return title;
     }

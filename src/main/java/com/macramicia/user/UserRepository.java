@@ -1,4 +1,4 @@
-package com.macramicia.authentication;
+package com.macramicia.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

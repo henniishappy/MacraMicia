@@ -1,8 +1,6 @@
-package com.macramicia.authentication;
+package com.macramicia.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 //@Table(name = "user")
