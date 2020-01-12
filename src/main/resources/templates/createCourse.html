@@ -14,13 +14,15 @@
   <form action="#" th:action="@{/courses/show}" th:object="${course}" method="post">
     <div class="field">
       <label>Title*</label><br>
-      <input name="title" type="text" th:field="*{title}" required><br>
+      <input name="title" type="text" placeholder="Learn Macramee" th:field="*{title}" required><br>
       <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>
     </div>
 
     <div class="field">
       <label>Description</label><br>
-      <input name="description" type="text" th:field="*{description}"><br>
+      <input name="description" type="text" placeholder="Are you interested in macramee but you do not know how
+        to do it? Let's create something together. I'll show you how to make your own wall hanging or planthanger,
+        explaining you step by step how to knot." th:field="*{description}"><br>
       <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</span>
     </div>
 
@@ -38,7 +40,7 @@
 
     <div class="field">
       <label>Maximum Spots</label><br>
-      <input name="maxSpots" type="number" min="1" th:field="*{maxSpots}"><br>
+      <input name="maxSpots" type="number" th:field="*{maxSpots}"><br>
       <span th:if="${#fields.hasErrors('maxSpots')}" th:errors="*{maxSpots}">Name Error</span>
     </div>
 
