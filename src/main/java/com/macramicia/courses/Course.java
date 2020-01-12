@@ -4,6 +4,7 @@ import com.macramicia.user.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 
     private String title;
 
@@ -38,7 +39,8 @@ public class Course {
 
     public Course() { }
 
-    public int getId() {
+
+    public long getId() {
         return this.id;
     }
 
@@ -51,7 +53,7 @@ public class Course {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -59,7 +61,7 @@ public class Course {
     }
 
     public LocalDateTime getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(LocalDateTime date) {
@@ -67,7 +69,7 @@ public class Course {
     }
 
     public String getVenue() {
-        return venue;
+        return this.venue;
     }
 
     public void setVenue(String venue) {
@@ -79,7 +81,7 @@ public class Course {
     }
 
     public int getMaxSpots() {
-        return maxSpots;
+        return this.maxSpots;
     }
 
     /*

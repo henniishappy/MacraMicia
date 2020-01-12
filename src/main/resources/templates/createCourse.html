@@ -12,10 +12,11 @@
   <h2>Create a new course</h2>
 
   <form action="#" th:action="@{/courses/show}" th:object="${course}" method="post">
+
     <div class="field">
       <label>Title*</label><br>
       <input name="title" type="text" placeholder="Learn Macramee" th:field="*{title}" required><br>
-      <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>
+      <!--<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>-->
     </div>
 
     <div class="field">
@@ -23,25 +24,25 @@
       <input name="description" type="text" placeholder="Are you interested in macramee but you do not know how
         to do it? Let's create something together. I'll show you how to make your own wall hanging or planthanger,
         explaining you step by step how to knot." th:field="*{description}"><br>
-      <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</span>
+      <!--<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</span>-->
     </div>
 
     <div class="field">
       <label>Date*</label><br>
       <input name="date" type="date" th:field="*{date}" required><br>
-      <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Name Error</span>
+      <!--<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Name Error</span>-->
     </div>
 
     <div class="field">
       <label>Venue*</label><br>
       <input name="venue" type="text" th:field="*{venue}" required><br>
-      <span th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Name Error</span>
+      <!--<span th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Name Error</span>-->
     </div>
 
     <div class="field">
       <label>Maximum Spots</label><br>
       <input name="maxSpots" type="number" th:field="*{maxSpots}"><br>
-      <span th:if="${#fields.hasErrors('maxSpots')}" th:errors="*{maxSpots}">Name Error</span>
+      <!--<span th:if="${#fields.hasErrors('maxSpots')}" th:errors="*{maxSpots}">Name Error</span>-->
     </div>
 
     <input type="submit" value="Create">

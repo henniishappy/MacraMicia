@@ -28,7 +28,7 @@ public class CoursesController {
 	@PostMapping(value = "/show")
 	public String createCourse(@ModelAttribute Course course) {
 		courseRepository.save(course);
-		return "redirect:courses/all";
+		return "redirect:all";
 	}
 
 	@GetMapping(value = "/all")
