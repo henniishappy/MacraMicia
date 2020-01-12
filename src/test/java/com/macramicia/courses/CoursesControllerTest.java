@@ -20,30 +20,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class CoursesControllerTest {
 
-    private MockMvc mockMvc;
-    private CourseRepository courseRepository;
+    private CourseRepository courseRepository = mock(CourseRepository.class);
+    private CoursesController coursesController = new CoursesController(courseRepository);
+    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
 
+/*
     @BeforeEach
     void setUp() {
         courseRepository = mock(CourseRepository.class);
         CoursesController coursesController = new CoursesController(courseRepository);
         mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
-    }
+    }*/
 
     @Test
     public void newCourse_rendersCourseForm() throws Exception {
-        mockMvc.perform(get("/new"))
+        mockMvc.perform(get("/courses/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/new"))
-                .andExpect(model().attribute("course", new Course()));
+                .andExpect(view().name("createCourse"))
+                .andExpect(model().attributeExists("course"));
     }
 
     @Test
     public void createCourse_savesCourseInRepository() throws Exception {
-        mockMvc.perform(post("/show")
+        mockMvc.perform(post("/courses/show")
                 .param("title", "New Course")
                 .param("description", "You can learn anything you want.")
-                .param("date", "2020-01-01")
+                .param("date","2020-01-01")
                 .param("venue", "here")
                 .param("maxSpots", "100"))
                 .andExpect(status().is3xxRedirection())
@@ -64,9 +66,10 @@ public class CoursesControllerTest {
                 new Course("course one", "a description", LocalDateTime.now(), "everywhere", 100),
                 new Course ("course two", "also a description", LocalDateTime.now(), "nowhere", 1));
 
+
         when(courseRepository.findAll()).thenReturn(allCourses);
 
-        mockMvc.perform(get("/all"))
+        mockMvc.perform(get("/courses/all"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("courses"))
                 .andExpect(model().attribute("courses", allCourses));

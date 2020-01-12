@@ -20,7 +20,7 @@ public class Course {
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDateTime date;
 
     private String venue;
 
@@ -29,7 +29,7 @@ public class Course {
     @OneToMany
     private List<User> user;
 
-    public Course(String title, String description, Date date, String venue, int maxSpots) {
+    public Course(String title, String description, LocalDateTime date, String venue, int maxSpots) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -60,11 +60,11 @@ public class Course {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
