@@ -1,57 +1,77 @@
 package com.macramicia.courses;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Arrays.asList;
+import static org.mockito.Mockito.mock;
+import org.mockito.ArgumentCaptor;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = CoursesController.class)
-class CoursesControllerTest {
-	@Autowired
-	private MockMvc mockMvc;
+public class CoursesControllerTest {
 
-	@Test
-	//@WithMockUser(username="user", password="password",roles={"ADMIN"})
-	void whenUserClicksCreateCourse_thenDisplaysNewCoursePage() throws Exception {
-		mockMvc.perform(get("/courses/new"))
-				.andExpect(view().name("createCourse"))
-				.andExpect(status().isOk());
-	}
+    private CourseRepository courseRepository = mock(CourseRepository.class);
+    private CoursesController coursesController = new CoursesController(courseRepository);
+    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
+
+/*
+    @BeforeEach
+    void setUp() {
+        courseRepository = mock(CourseRepository.class);
+        CoursesController coursesController = new CoursesController(courseRepository);
+        mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
+    }*/
+
+    @Test
+    public void newCourse_rendersCourseForm() throws Exception {
+        mockMvc.perform(get("/courses/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("createCourse"))
+                .andExpect(model().attributeExists("course"));
+    }
+
+    @Test
+    public void createCourse_savesCourseInRepository() throws Exception {
+        mockMvc.perform(post("/courses/show")
+                .param("title", "New Course")
+                .param("description", "You can learn anything you want.")
+                .param("date","2020-01-01")
+                .param("venue", "here")
+                .param("maxSpots", "100"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("courses"));
+
+        ArgumentCaptor<Course> savedCourse = ArgumentCaptor.forClass(Course.class);
+        Mockito.verify(courseRepository).save(savedCourse.capture());
+        assertThat(savedCourse.getValue().getTitle()).isEqualTo("New Course");
+        assertThat(savedCourse.getValue().getDescription()).isEqualTo("You can learn anything you want.");
+        assertThat(savedCourse.getValue().getDate()).isEqualTo("2020-01-01");
+        assertThat(savedCourse.getValue().getVenue()).isEqualTo("here");
+        assertThat(savedCourse.getValue().getMaxSpots()).isEqualTo(100);
+    }
+
+    @Test
+    public void showAllCourses_rendersAllCourses() throws Exception {
+        List<Course> allCourses = asList(
+                new Course("course one", "a description", LocalDateTime.now(), "everywhere", 100),
+                new Course ("course two", "also a description", LocalDateTime.now(), "nowhere", 1));
 
 
-	@Test
-	//@WithMockUser(username="user", password="password",roles={"ADMIN"})
-	void whenCreateNewCourseAndValidAttributes_thenDisplaysCourses() throws Exception {
-		mockMvc.perform(post("/courses/new")
-				.content(asJsonString(new Course(new Date(System.currentTimeMillis()))))
-				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(view().name("createCourse"));
-	}
+        when(courseRepository.findAll()).thenReturn(allCourses);
 
-	@Test
-	void whenUserClicksCourses_thenDisplayAllCourses() throws Exception {
-		mockMvc.perform(get("/courses/all"))
-				.andExpect(status().isOk())
-				.andExpect(view().name("courses"));
-	}
-
-	public static String asJsonString(final Object obj) {
-		try {
-			return new ObjectMapper().writeValueAsString(obj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+        mockMvc.perform(get("/courses/all"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("courses"))
+                .andExpect(model().attribute("courses", allCourses));
+    }
 }
