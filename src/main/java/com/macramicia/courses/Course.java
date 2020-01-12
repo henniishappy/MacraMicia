@@ -95,7 +95,6 @@ public class Course {
     }
 
     public int getFreeSpots() {
-        System.out.println(maxSpots - getTakenSpots());
         return maxSpots - getTakenSpots();
     }
 
