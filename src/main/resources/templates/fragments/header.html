@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>Navigation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-<body class="bg-dark text-white">
-    <header th:insert="fragments/header.html :: universalheader"></header>
-    <div th:insert="fragments/navigation.html :: navigation"></div>
-    <h1>Our apologies.</h1>
-    <p class="lead">This page stepped out for a quick ride.</p>
-    <p>Please go back to our homepage to restart your browsing experience.</p>
+<body>
+<header class="container-fluid bg-dark text-white" th:fragment="universalheader">
+    <h1 class="macra display-3">Macra <small class="micia display-3">Micia</small></h1>
+</header>
 </body>
 </html>

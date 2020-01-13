@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>About Us</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-dark text-white">
   <header>
-    <h1>MacraMicia</h1>
+    <div th:insert="fragments/header.html :: universalheader"></div>
   </header>
   <div th:insert="fragments/navigation.html :: navigation"></div>
-  <h2>About Us</h2>
+  <h2 class="macra text-center">About Us</h2>
 
   <h4>We Are</h4>
   <p>Nastasja Stephanie Parschew</p>
