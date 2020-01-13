@@ -63,10 +63,22 @@ public class CoursesControllerTest {
 
     @Test
     public void showAllCourses_rendersAllCourses() throws Exception {
-        List<Course> allCourses = asList(
-                new Course("course one", "a description", LocalDate.now(), "everywhere", 100),
-                new Course ("course two", "also a description", LocalDate.now(), "nowhere", 1));
 
+        Course one = new Course();
+        one.setTitle("Course one");
+        one.setDescription("desc1");
+        one.setDate(LocalDate.now());
+        one.setVenue("everywhere");
+        one.setMaxSpots(100);
+
+        Course two = new Course();
+        one.setTitle("Course two");
+        one.setDescription("desc2");
+        one.setDate(LocalDate.now());
+        one.setVenue("nowhere");
+        one.setMaxSpots(1);
+
+        List<Course> allCourses = asList(one,two);
 
         when(courseRepository.findAll()).thenReturn(allCourses);
 

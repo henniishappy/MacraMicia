@@ -14,15 +14,6 @@ public class User {
     private String username;
     private String email;
 
-    public User(String firstName, String lastName, String username, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-    }
-
-    public User()  { }
-
     /* Getters and Setters */
 
     public Long getId() {
