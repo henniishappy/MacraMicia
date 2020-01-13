@@ -3,6 +3,7 @@ package com.macramicia.courses;
 import com.macramicia.user.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Course {
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime date;
+    private LocalDate date;
 
     private String venue;
 
@@ -29,7 +30,7 @@ public class Course {
     @OneToMany
     private List<User> user;
 
-    public Course(String title, String description, LocalDateTime date, String venue, int maxSpots) {
+    public Course(String title, String description, LocalDate date, String venue, int maxSpots) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -60,11 +61,11 @@ public class Course {
         this.description = description;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

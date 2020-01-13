@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class CoursesControllerTest {
                 .param("venue", "here")
                 .param("maxSpots", "100"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("courses"));
+                .andExpect(redirectedUrl("all"));
 
         ArgumentCaptor<Course> savedCourse = ArgumentCaptor.forClass(Course.class);
         Mockito.verify(courseRepository).save(savedCourse.capture());
@@ -63,8 +64,8 @@ public class CoursesControllerTest {
     @Test
     public void showAllCourses_rendersAllCourses() throws Exception {
         List<Course> allCourses = asList(
-                new Course("course one", "a description", LocalDateTime.now(), "everywhere", 100),
-                new Course ("course two", "also a description", LocalDateTime.now(), "nowhere", 1));
+                new Course("course one", "a description", LocalDate.now(), "everywhere", 100),
+                new Course ("course two", "also a description", LocalDate.now(), "nowhere", 1));
 
 
         when(courseRepository.findAll()).thenReturn(allCourses);
