@@ -14,30 +14,32 @@
     <div th:insert="fragments/header.html :: universalheader"></div>
   </header>
   <div th:insert="fragments/navigation.html :: navigation"></div>
-  <h2 class="macra text-center">Courses</h2>
+  <div class="container p-3 my-4 bg-secondary" align="center">
+    <h1 class="macra text-center">Courses</h1>
 
-  <table data-cy="tableCourses">
-    <thead data-cy="tableCoursesHeader">
-      <tr>
-        <th data-cy="tableCoursesHeaderTitle">Title</th>
-        <th data-cy="tableCoursesHeaderDescription">Description</th>
-        <th data-cy="tableCoursesHeaderDate">Date</th>
-        <th data-cy="tableCoursesHeaderVenue">Venue</th>
-        <th data-cy="tableCoursesHeaderSpots">Remaining Spots</th>
-      </tr>
-    </thead>
-    <tbody data-cy="tableCoursesBody">
-     <!-- <tr th:if="${courses.empty}">
-        <td colspan="2" data-cy="tableCoursesEmpty">No courses available</td>
-      </tr> -->
-      <tr th:each="course: ${courses}">
-        <td th:text="${course.title}"/>
-        <td th:text="${course.description}"/>
-        <td th:text="${course.date}"/>
-        <td th:text="${course.venue}"/>
-        <td th:text="${course.maxSpots}" align="center"/>
-      </tr>
-    </tbody>
-  </table>
+    <table data-cy="tableCourses">
+      <thead data-cy="tableCoursesHeader">
+        <tr>
+          <th data-cy="tableCoursesHeaderTitle">Title</th>
+          <th data-cy="tableCoursesHeaderDescription">Description</th>
+          <th data-cy="tableCoursesHeaderDate">Date</th>
+          <th data-cy="tableCoursesHeaderVenue">Venue</th>
+          <th data-cy="tableCoursesHeaderSpots">Remaining Spots</th>
+        </tr>
+      </thead>
+      <tbody data-cy="tableCoursesBody">
+       <!-- <tr th:if="${courses.empty}">
+          <td colspan="2" data-cy="tableCoursesEmpty">No courses available</td>
+        </tr> -->
+        <tr th:each="course: ${courses}">
+          <td th:text="${course.title}"/>
+          <td th:text="${course.description}"/>
+          <td th:text="${course.date}"/>
+          <td th:text="${course.venue}"/>
+          <td th:text="${course.maxSpots}" align="center"/>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

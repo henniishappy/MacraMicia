@@ -12,24 +12,30 @@
 <body class="bg-dark text-white">
     <header th:insert="fragments/header.html :: universalheader"></header>
     <div th:insert="fragments/navigation.html :: navigation"></div>
-    <h2>Login</h2>
+    <div class="container p-3 my-4 bg-secondary" align="center">
+        <h1 class="macra">Login</h1>
 
-    <form name="f" th:action="@{/login}" method="post">
-        <div th:if="${param.error}" class="alert alert-error">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}" class="alert alert-success">
-            You have been logged out.
-        </div>
-        <br>
-        <label for="username" data-cy="loginLabelUsername">Username</label>
-        <input type="text" id="username" name="username" data-cy="loginInputUsername"/>
-        <br>
-        <label for="password" data-cy="loginLabelPassword">Password</label>
-        <input type="password" id="password" name="password" data-cy="loginInputPassword"/>
-        <div class="form-actions">
-            <button type="submit" class="btn" data-cy="loginButton">Log in</button>
-        </div>
-    </form>
+        <form name="f" th:action="@{/login}" method="post" class="form-horizontal">
+            <div th:if="${param.error}" class="alert alert-error">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+            <br>
+            <div class="form-inline">
+                <label for="username" data-cy="loginLabelUsername" class="control-label col-sm-2">Username</label>
+                <input type="text" id="username" name="username" data-cy="loginInputUsername" class="form-control"/>
+            </div>
+            <br>
+            <div class="form-inline">
+                <label for="password" data-cy="loginLabelPassword" class="control-label col-sm-2">Password</label>
+                <input type="password" id="password" name="password" data-cy="loginInputPassword" class="form-control"/>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-light" data-cy="loginButton">Log in</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -12,33 +12,53 @@
 <body class="bg-dark text-white">
     <header th:insert="fragments/header.html :: universalheader"></header>
     <div th:insert="fragments/navigation.html :: navigation"></div>
-    <h2>Sign Up</h2>
+    <div class="container p-3 my-4 bg-secondary">
+        <div align="center">
+            <h1 class="macra">Sign Up</h1>
 
-    <p>Please fill in this form to create an account.</p>
+            <p>Please fill in this form to create an account.</p>
+        </div>
+        <form class="form-horizontal" name="f" th:action="@{/user/registration}" method="post">
 
-    <form name="f" th:action="@{/user/registration}" method="post">
+            <div class="form-group row">
+                <label for="first_name" class="col-form-label col-sm-2" data-cy="registrationLabelFirstName"><b>First name</b></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Enter first name" name="first_name" id="first_name" data-cy="registrationInputFirstName" required>
+                </div>
+            </div>
 
-        <label data-cy="registrationLabelFirstName"><b>First name</b></label>
-        <input type="text" placeholder="Enter first name" name="first_name" data-cy="registrationInputFirstName" required>
-            <br>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" data-cy="registrationLabelLastName"><b>Last name</b></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Enter last name" name="last_name" data-cy="registrationInputLastName" required>
+                </div>
+            </div>
 
-        <label data-cy="registrationLabelLastName"><b>Last name</b></label>
-        <input type="text" placeholder="Enter last name" name="last_name" data-cy="registrationInputLastName" required>
-            <br>
+            <div class="form-group row">
+            <label class="control-label col-sm-2" data-cy="registrationLabelEmail"><b>Email</b></label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Enter e-mail" name="email" data-cy="registrationInputEmail" required>
+                </div>
+            </div>
 
-        <label data-cy="registrationLabelEmail"><b>Email</b></label>
-        <input type="text" placeholder="Enter e-mail" name="email" data-cy="registrationInputEmail" required>
-            <br>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" data-cy="registrationLabelUsername"><b>Username</b></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Enter username" name="username" data-cy="registrationInputUsername" required>
+                </div>
+            </div>
 
-        <label data-cy="registrationLabelUsername"><b>Username</b></label>
-        <input type="text" placeholder="Enter username" name="username" data-cy="registrationInputUsername" required>
-            <br>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" data-cy="registrationLabelPassword"><b>Password</b></label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" placeholder="Enter Password" name="password" data-cy="registrationInputPassword" required>
+                </div>
+            </div>
 
-        <label data-cy="registrationLabelPassword"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" data-cy="registrationInputPassword" required>
-            <br>
-
-        <button type="submit" class="signupbtn" data-cy="signUpButton">Sign Up</button>
-    </form>
+            <div align="center">
+                <button type="submit"  data-cy="signUpButton" class="btn btn-light">Sign Up</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
