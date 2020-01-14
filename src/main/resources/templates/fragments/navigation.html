@@ -33,7 +33,7 @@
                     <a class="nav-link" href="/aboutus" data-cy="aboutNav">About Us</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/login?logout" data-cy="logoutNav">Logout</a>
+                    <a class="nav-link" href="/user/logout" data-cy="logoutNav">Logout</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" href="/user/login" data-cy="loginNav">Login</a>
