@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,7 +21,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BCryptEncoderConfig bCryptEncoderConfig;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -45,10 +46,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll();
     }
 
+    @Autowired
+    protected void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+        auth.authenticationProvider(authenticationProvider());
+    }
 
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder);
+        provider.setPasswordEncoder(bCryptEncoderConfig.passwordEncoder());
         provider.setUserDetailsService(userDetailsService);
 
         return provider;

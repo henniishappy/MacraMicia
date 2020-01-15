@@ -1,4 +1,4 @@
-package com.macramicia;
+package com.macramicia.user;
 
 import com.macramicia.user.User;
 import com.macramicia.user.UserRepository;

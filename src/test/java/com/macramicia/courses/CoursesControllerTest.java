@@ -24,13 +24,6 @@ public class CoursesControllerTest {
     private CoursesController coursesController = new CoursesController(courseRepository);
     private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
 
-/*
-    @BeforeEach
-    void setUp() {
-        courseRepository = mock(CourseRepository.class);
-        CoursesController coursesController = new CoursesController(courseRepository);
-        mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
-    }*/
 
     @Test
     public void newCourse_rendersCourseForm() throws Exception {
