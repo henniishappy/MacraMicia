@@ -1,5 +1,7 @@
 package com.macramicia.user;
 
+import com.macramicia.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -17,9 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository repository) { this.userRepository = repository; }
+    @Autowired
+    public UserController(UserService userService) { this.userService = userService; }
 
     @GetMapping("/login")
     public String showLoginPage() {
@@ -34,7 +37,7 @@ public class UserController {
 
     @PostMapping("/registration/create")
     public String createUser(@ModelAttribute User user) {
-        userRepository.save(user);
+        userService.saveUser(user);
         return "redirect:/user/login";
     }
 
