@@ -4,7 +4,7 @@ describe('The course overview page', function() {
   })
 
   it('displays the website name', function() {
-    cy.contains('MacraMicia')
+    cy.contains('Macra Micia')
   })
 
   it('displays the links to other pages', function() {
@@ -39,7 +39,7 @@ describe('The course overview page', function() {
         .contains('Remaining Spots')
 
         .get('[data-cy=tableCoursesBody]')
-        .children().should('have.length.greaterThan', 0)
+        .children().should('have.length', 0)
  })
 
 })

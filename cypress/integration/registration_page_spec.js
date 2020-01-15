@@ -1,10 +1,10 @@
 describe('The Sign up form', function () {
     it('successfully loads', function () {
-        cy.visit('/registration')
+        cy.visit('user/registration')
     })
 
     it('displays the website name', function() {
-        cy.contains('MacraMicia')
+        cy.contains('Macra Micia')
     })
 
     it('displays the links to other pages', function() {
@@ -34,5 +34,15 @@ describe('The Sign up form', function () {
     it('displays the button in the form', function () {
         cy.get('[data-cy=signUpButton]').should('be.enabled').click()
             .url().should('include', 'registration')
+    })
+
+    it('redirects to /user/login after filling out the form and clicking the Sign Up button', function () {
+        cy.get('[data-cy=registrationInputFirstName]').type('exampleFirstName')
+        cy.get('[data-cy=registrationInputLastName]').type('exampleLastName')
+        cy.get('[data-cy=registrationInputEmail]').type('exampleEmail')
+        cy.get('[data-cy=registrationInputUsername]').type('exampleUsername')
+        cy.get('[data-cy=registrationInputPassword]').type('examplePassword')
+        cy.get('[data-cy=signUpButton]').should('be.enabled').click()
+            .url().should('include', '/registration/create')
     })
 })

@@ -1,10 +1,10 @@
 describe('The aboutUs page', function() {
   it('successfully loads', function() {
-    cy.visit('/aboutUs')
+    cy.visit('/aboutus')
   })
 
   it('displays the website name', function() {
-    cy.contains('MacraMicia')
+    cy.contains('Macra Micia')
   })
 
   it('displays the links to other pages', function() {
@@ -19,8 +19,8 @@ describe('The aboutUs page', function() {
     cy.contains('About Us')
   })
 
-  it('displays the current date and time', function() {
-    cy.contains('Current date and time: ')
+  it('displays heading', function() {
+    cy.contains('About Us')
   })
 
   it('should display two images showing the user persona of Lisa and Claudia', () => {
