@@ -28,7 +28,7 @@ public class Course {
     private int maxSpots;
 
     @OneToMany
-    private List<User> user;
+    private List<User> participants;
 
 
     public long getId() {
@@ -75,53 +75,30 @@ public class Course {
         return this.maxSpots;
     }
 
-    /*
-    public int getTakenSpots() {
-        int taken = 0;
-        for (int i = 0; i < maxSpots; i++) {
-            if(participants[i] != null)
-                taken++;
+    public List<User> getParticipants() { return this.participants; }
+
+    public int getNumberOfParticipants() {
+        if (this.participants.isEmpty()) return 0;
+        else return this.participants.size();
+    }
+
+    public int getFreeSpots() { return this.maxSpots - this.participants.size(); }
+
+    public boolean isFull() {
+        if (getFreeSpots() == 0) return true;
+        else return false;
+    }
+
+    public boolean addParticipant(User participant) {
+        if (isFull()) return false;
+        else {
+            this.participants.add(participant);
+            return true;
         }
-        return taken;
     }
 
-    public int getFreeSpots() {
-        return maxSpots - getTakenSpots();
-    }
+    public boolean removeParticipant(User cancellation) { return this.participants.remove(cancellation); }
 
-    public Boolean isFull() {
-        return getTakenSpots() >= maxSpots;
-    }
+    public boolean isParticipant(User user) { return this.participants.contains(user); }
 
-    public void updateMaxParticipants(int maxParticipants) {
-        if (getTakenSpots() > maxParticipants)
-            throw new IllegalArgumentException("Cannot reduce number of " +
-                    "particpants. More than " +  maxParticipants + " people" +
-                    " have already signed up for this course.");
-        User[] updatedP = new Participants[maxParticipants];
-        for (int i = 0; i < getTakenSpots(); i++) {
-            updatedP[i] = this.participants[i];
-        }
-        this.participants = updatedP;
-    }
-
-    public void addParticipant(User newP) {
-        if (isFull()) throw new RuntimeException("This course is already full");
-        this.participants[getNumberOfParticipants()] = newP;
-    }
-
-    public void removeParticipant(User cancellation) {
-        if (!isParticipant(cancellation))
-            throw new IllegalArgumentException("This User is not a participant of this course");
-        List<User> userList = Array.asList(this.participants);
-        userList.remove(cancellation);
-        this.participants
-    }
-
-    private boolean isParticipant(User person) {
-        List<User> userList = Array.asList(this.participants);
-        return userList.contains(person);
-        this.participants = userList.toArray(this.participants);
-    }
-     */
 }
