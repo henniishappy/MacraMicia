@@ -14,9 +14,27 @@
     <div th:insert="fragments/header.html :: universalheader"></div>
   </header>
   <div th:insert="fragments/navigation.html :: navigation"></div>
-  <div class="container p-3 my-4 bg-secondary" align="center">
+  <div class="container p-3 my-4 bg-secondary">
     <h1 class="macra text-center">Courses</h1>
 
+    <div class="card-deck text-body" data-cy="courseCard">
+      <div class="card bg-light" th:each="course: ${courses}">
+        <div class="card-header">
+          <h4 class="card-title" th:text="${course.title}"></h4>
+        </div>
+        <div class="card-body">
+          <p><label class="card-text" th:text="${course.description}"></label></p>
+          <p><label class="card-text" th:text="'Date: ' + ${course.date}"></label></p>
+          <p><label class="card-text" th:text="'Venue: ' + ${course.venue}"></label></p>
+          <p><label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label></p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-dark">Book a Spot!</a>
+        </div>
+      </div>
+    </div>
+
+    <!--
     <table data-cy="tableCourses">
       <thead data-cy="tableCoursesHeader">
         <tr>
@@ -28,9 +46,9 @@
         </tr>
       </thead>
       <tbody data-cy="tableCoursesBody">
-       <!-- <tr th:if="${courses.empty}">
+        <tr th:if="${courses.empty}">
           <td colspan="2" data-cy="tableCoursesEmpty">No courses available</td>
-        </tr> -->
+        </tr>
         <tr th:each="course: ${courses}">
           <td th:text="${course.title}"/>
           <td th:text="${course.description}"/>
@@ -40,6 +58,7 @@
         </tr>
       </tbody>
     </table>
+    -->
   </div>
 </body>
 </html>

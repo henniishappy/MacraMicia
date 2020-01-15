@@ -19,25 +19,25 @@ describe('The course overview page', function() {
     cy.contains('Courses')
   })
 
-  it('displays course details in a table', function() {
+  it('displays course details in cards', function() {
     cy
-        .get('[data-cy=tableCourses]')
+        .get('[data-cy=courseCard]')
         .should('be.visible')
-        .children().should('have.length', 2)
+        // .children().should('have.length', 2)
 
-        .get('[data-cy=tableCoursesHeaderTitle]')
-        .contains('Title')
-        .get('[data-cy=tableCoursesHeaderDescription]')
-        .contains('Description')
-        .get('[data-cy=tableCoursesHeaderDate]')
-        .contains('Date')
-        .get('[data-cy=tableCoursesHeaderVenue]')
-        .contains('Venue')
-        .get('[data-cy=tableCoursesHeaderSpots]')
-        .contains('Remaining Spots')
-
-        .get('[data-cy=tableCoursesBody]')
-        .children().should('have.length.greaterThan', 0)
+        // .get('[data-cy=tableCoursesHeaderTitle]')
+        // .contains('Title')
+        // .get('[data-cy=tableCoursesHeaderDescription]')
+        // .contains('Description')
+        // .get('[data-cy=tableCoursesHeaderDate]')
+        // .contains('Date')
+        // .get('[data-cy=tableCoursesHeaderVenue]')
+        // .contains('Venue')
+        // .get('[data-cy=tableCoursesHeaderSpots]')
+        // .contains('Remaining Spots')
+        //
+        // .get('[data-cy=tableCoursesBody]')
+        // .children().should('have.length.greaterThan', 0)
  })
 
 })
