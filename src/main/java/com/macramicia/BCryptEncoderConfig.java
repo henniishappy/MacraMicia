@@ -18,9 +18,7 @@ public class BCryptEncoderConfig {
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
-
                 return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
-
             }
         };
     }

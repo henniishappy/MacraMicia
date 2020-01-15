@@ -1,7 +1,5 @@
 package com.macramicia.user;
 
-import com.macramicia.user.User;
-import com.macramicia.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

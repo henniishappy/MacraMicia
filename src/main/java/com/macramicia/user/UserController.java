@@ -41,7 +41,6 @@ public class UserController {
         String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPw);
         userService.saveUser(user);
-
         return "redirect:/user/login";
     }
 

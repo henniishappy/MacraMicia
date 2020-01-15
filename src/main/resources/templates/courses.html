@@ -23,6 +23,7 @@
           <th data-cy="tableCoursesHeaderTitle">Title</th>
           <th data-cy="tableCoursesHeaderDescription">Description</th>
           <th data-cy="tableCoursesHeaderDate">Date</th>
+          <th data-cy="tableCoursesHeaderTime">Time</th>
           <th data-cy="tableCoursesHeaderVenue">Venue</th>
           <th data-cy="tableCoursesHeaderSpots">Remaining Spots</th>
         </tr>
@@ -35,6 +36,7 @@
           <td th:text="${course.title}"/>
           <td th:text="${course.description}"/>
           <td th:text="${course.date}"/>
+          <td th:text="${course.time}"/>
           <td th:text="${course.venue}"/>
           <td th:text="${course.maxSpots}" align="center"/>
         </tr>

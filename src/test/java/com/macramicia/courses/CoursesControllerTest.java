@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -39,6 +40,7 @@ public class CoursesControllerTest {
                 .param("title", "New Course")
                 .param("description", "You can learn anything you want.")
                 .param("date","2020-01-01")
+                .param("time", "12:00")
                 .param("venue", "here")
                 .param("maxSpots", "100"))
                 .andExpect(status().is3xxRedirection())
@@ -49,6 +51,7 @@ public class CoursesControllerTest {
         assertThat(savedCourse.getValue().getTitle()).isEqualTo("New Course");
         assertThat(savedCourse.getValue().getDescription()).isEqualTo("You can learn anything you want.");
         assertThat(savedCourse.getValue().getDate()).isEqualTo("2020-01-01");
+        assertThat(savedCourse.getValue().getTime()).isEqualTo("12:00");
         assertThat(savedCourse.getValue().getVenue()).isEqualTo("here");
         assertThat(savedCourse.getValue().getMaxSpots()).isEqualTo(100);
     }
@@ -60,6 +63,7 @@ public class CoursesControllerTest {
         one.setTitle("Course one");
         one.setDescription("desc1");
         one.setDate(LocalDate.now());
+        one.setTime(LocalTime.now());
         one.setVenue("everywhere");
         one.setMaxSpots(100);
 
@@ -67,6 +71,7 @@ public class CoursesControllerTest {
         one.setTitle("Course two");
         one.setDescription("desc2");
         one.setDate(LocalDate.now());
+        one.setTime(LocalTime.now());
         one.setVenue("nowhere");
         one.setMaxSpots(1);
 

@@ -1,8 +1,5 @@
 package com.macramicia.user;
 
-import com.macramicia.BCryptEncoderConfig;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 

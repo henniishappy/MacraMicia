@@ -31,6 +31,8 @@ describe('The course overview page', function() {
         .contains('Description')
         .get('[data-cy=tableCoursesHeaderDate]')
         .contains('Date')
+        .get('[data-cy=tableCoursesHeaderTime]')
+        .contains('Time')
         .get('[data-cy=tableCoursesHeaderVenue]')
         .contains('Venue')
         .get('[data-cy=tableCoursesHeaderSpots]')
