@@ -29,14 +29,6 @@ public class Course {
 
     @OneToMany
     private List<User> user;
-/*
-    public Course(String title, String description, LocalDate date, String venue, int maxSpots) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.venue = venue;
-        this.maxSpots = maxSpots;
-    }*/
 
 
     public long getId() {
