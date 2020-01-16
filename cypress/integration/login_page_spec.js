@@ -1,10 +1,10 @@
 describe('The login page', function() {
     it('successfully loads', function() {
-        cy.visit('/login')
+        cy.visit('/user/login')
     })
 
     it('displays the website name', function() {
-        cy.contains('MacraMicia')
+        cy.contains('Macra Micia')
     })
 
     it('displays the links to other pages', function() {
@@ -27,7 +27,6 @@ describe('The login page', function() {
 
     it('displays the button in the form', function () {
         cy.get('[data-cy=loginButton]').should('be.enabled').click()
-            .url().should('include', 'login')
+            .url().should('include', 'user/login/authenticate')
     })
-
 })

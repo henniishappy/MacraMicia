@@ -4,6 +4,7 @@ import com.macramicia.user.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.*;
 
@@ -20,6 +21,9 @@ public class Course {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime time;
 
     private String venue;
 
@@ -55,6 +59,14 @@ public class Course {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public String getVenue() {

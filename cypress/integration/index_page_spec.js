@@ -4,7 +4,7 @@ describe('The index page', function() {
   })
 
   it('displays the website name', function() {
-    cy.contains('MacraMicia')
+    cy.contains('Macra Micia')
   })
 
   it('displays the links to other pages', function() {
@@ -32,7 +32,7 @@ describe('The index page', function() {
   it('lets You visit the AboutUs page', function() {
     cy.get('[data-cy=aboutNav]').click()
     cy.url()
-      .should('include', '/aboutUs')
+      .should('include', '/aboutus')
   })
 
   it('lets You visit the Login page', function() {
