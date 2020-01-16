@@ -23,7 +23,7 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Role role;
 
-    @ElementCollection
+    @OneToMany
     private List<Course> courses = new ArrayList<>();
 
     /* Getters and Setters */
