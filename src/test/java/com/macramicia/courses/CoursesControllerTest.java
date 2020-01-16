@@ -1,7 +1,5 @@
 package com.macramicia.courses;
 
-import com.macramicia.user.UserRepository;
-import com.macramicia.user.UserService;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,8 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CoursesControllerTest {
 
     private final CourseRepository courseRepository = mock(CourseRepository.class);
-	private final UserRepository userRepository = mock(UserRepository.class);
-    private final CoursesController coursesController = new CoursesController(courseRepository, userRepository);
+    private final CoursesController coursesController = new CoursesController(courseRepository);
     private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
 
     @Test
