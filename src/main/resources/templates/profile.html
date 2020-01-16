@@ -14,14 +14,14 @@
     <div th:insert="fragments/header.html :: universalheader"></div>
   </header>
   <div th:insert="fragments/navigation.html :: navigation"></div>
-  <div class="container p-3 my-4 bg-secondary">
-    <h1 class="macra text-center">Courses</h1>
+  <div class="container p-3 my-4 bg-secondary" align="center">
+    <h1 class="macra text-center">My Courses</h1>
 
-    <div class="card-deck text-body" data-cy="courseCard">
-      <div th:if="${courses.empty}">
-        <p>No courses are currently available.</p>
+    <div class="card-deck text-body" data-cy="myCourseCard">
+      <div th:if="${myCourses.empty}">
+        <p>You haven't booked any courses yet.</p>
       </div>
-      <div class="card bg-light" th:each="course: ${courses}">
+      <div class="card bg-light" th:each="course: ${myCourses}">
         <div class="card-header">
           <h4 class="card-title" th:text="${course.title}"></h4>
         </div>
@@ -31,9 +31,6 @@
           <p><label class="card-text" th:text="'Time: ' + ${course.time}"></label></p>
           <p><label class="card-text" th:text="'Venue: ' + ${course.venue}"></label></p>
           <p><label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label></p>
-        </div>
-        <div class="card-footer">
-          <a href="/courses/profile/addCourse" class="btn btn-dark">Book a Spot!</a>
         </div>
       </div>
     </div>

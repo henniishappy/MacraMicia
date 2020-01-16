@@ -1,12 +1,13 @@
 package com.macramicia.courses;
 
+import com.macramicia.user.User;
+import com.macramicia.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -14,9 +15,12 @@ import java.util.List;
 public class CoursesController {
 
 	private final CourseRepository courseRepository;
+	private final UserRepository userRepository;
 
-	public CoursesController(CourseRepository courseRepository) {
+	@Autowired
+	public CoursesController(CourseRepository courseRepository, UserRepository userRepository) {
 		this.courseRepository = courseRepository;
+		this.userRepository = userRepository;
 	}
 
 	@GetMapping(value = "/new")
@@ -36,5 +40,24 @@ public class CoursesController {
 		List<Course> allCourses = courseRepository.findAll();
 		model.addAttribute("courses", allCourses);
 		return "courses";
+	}
+
+	@GetMapping(value = "/profile/addCourse")
+	public String updateMyCourses(@ModelAttribute Course course, Model model, Principal principal) {
+		User currentUser = userRepository.findUserByUsername(principal.getName());
+		currentUser.addCourse(course);
+		model.addAttribute("myCourses", currentUser.getCourses());
+		return "profile";
+	}
+
+	@GetMapping(value = "/profile")
+	public String showMyCourses(Model model, Principal principal) {
+		//System.out.println(userRepository.findAll());
+		//System.out.println(principal.getName());
+		User currentUser = userRepository.findUserByUsername(principal.getName());
+		System.out.println(currentUser);
+		if (!model.containsAttribute("myCourses"))
+			model.addAttribute("myCourses", currentUser.getCourses());
+		return "profile";
 	}
 }
