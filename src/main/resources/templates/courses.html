@@ -18,6 +18,9 @@
     <h1 class="macra text-center">Courses</h1>
 
     <div class="card-deck text-body" data-cy="courseCard">
+      <div th:if="${courses.empty}">
+        No courses are currently available.
+      </div>
       <div class="card bg-light" th:each="course: ${courses}">
         <div class="card-header">
           <h4 class="card-title" th:text="${course.title}"></h4>
@@ -25,6 +28,7 @@
         <div class="card-body">
           <p><label class="card-text" th:text="${course.description}"></label></p>
           <p><label class="card-text" th:text="'Date: ' + ${course.date}"></label></p>
+          <p><label class="card-text" th:text="'Time: ' + ${course.time}"></label></p>
           <p><label class="card-text" th:text="'Venue: ' + ${course.venue}"></label></p>
           <p><label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label></p>
         </div>
@@ -33,34 +37,6 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <table data-cy="tableCourses">
-      <thead data-cy="tableCoursesHeader">
-        <tr>
-          <th data-cy="tableCoursesHeaderTitle">Title</th>
-          <th data-cy="tableCoursesHeaderDescription">Description</th>
-          <th data-cy="tableCoursesHeaderDate">Date</th>
-          <th data-cy="tableCoursesHeaderTime">Time</th>
-          <th data-cy="tableCoursesHeaderVenue">Venue</th>
-          <th data-cy="tableCoursesHeaderSpots">Remaining Spots</th>
-        </tr>
-      </thead>
-      <tbody data-cy="tableCoursesBody">
-        <tr th:if="${courses.empty}">
-          <td colspan="2" data-cy="tableCoursesEmpty">No courses available</td>
-        </tr>
-        <tr th:each="course: ${courses}">
-          <td th:text="${course.title}"/>
-          <td th:text="${course.description}"/>
-          <td th:text="${course.date}"/>
-          <td th:text="${course.time}"/>
-          <td th:text="${course.venue}"/>
-          <td th:text="${course.maxSpots}" align="center"/>
-        </tr>
-      </tbody>
-    </table>
-    -->
   </div>
 </body>
 </html>

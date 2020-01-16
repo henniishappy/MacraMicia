@@ -1,7 +1,6 @@
 package com.macramicia.courses;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,7 +23,6 @@ public class CoursesControllerTest {
     private CourseRepository courseRepository = mock(CourseRepository.class);
     private CoursesController coursesController = new CoursesController(courseRepository);
     private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
-
 
     @Test
     public void newCourse_rendersCourseForm() throws Exception {

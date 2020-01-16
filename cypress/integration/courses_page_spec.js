@@ -23,25 +23,5 @@ describe('The course overview page', function() {
     cy
         .get('[data-cy=courseCard]')
         .should('be.visible')
-        // .children().should('have.length', 2)
-
-        /*
-        .get('[data-cy=tableCoursesHeaderTitle]')
-        .contains('Title')
-        .get('[data-cy=tableCoursesHeaderDescription]')
-        .contains('Description')
-        .get('[data-cy=tableCoursesHeaderDate]')
-        .contains('Date')
-        .get('[data-cy=tableCoursesHeaderTime]')
-        .contains('Time')
-        .get('[data-cy=tableCoursesHeaderVenue]')
-        .contains('Venue')
-        .get('[data-cy=tableCoursesHeaderSpots]')
-        .contains('Remaining Spots')
-
-        .get('[data-cy=tableCoursesBody]')
-        .children().should('have.length', 0)
-         */
  })
-
 })
