@@ -23,7 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/" data-cy="homeNav">Home</a>
                 </li>
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" href="/courses/new" data-cy="createCourseNav">Create Course</a>
                 </li>
                 <li class="nav-item">

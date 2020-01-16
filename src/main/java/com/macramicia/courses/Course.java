@@ -4,8 +4,6 @@ import com.macramicia.user.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -85,8 +83,7 @@ public class Course {
     public int getFreeSpots() { return this.maxSpots - this.participants.size(); }
 
     public boolean isFull() {
-        if (getFreeSpots() == 0) return true;
-        else return false;
+        return getFreeSpots() == 0;
     }
 
     public boolean addParticipant(User participant) {

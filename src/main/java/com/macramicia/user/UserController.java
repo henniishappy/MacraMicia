@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
     private final UserService userService;
-    private BCryptEncoderConfig encoderConfig;
+    private final BCryptEncoderConfig encoderConfig;
 
     @Autowired
     public UserController(UserService userService, BCryptEncoderConfig encoderConfig) {
@@ -40,6 +40,12 @@ public class UserController {
     public String createUser(@ModelAttribute User user) {
         String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPw);
+
+        Role role = new Role();
+        role.setName("USER");
+
+        user.setRole(role);
+
         userService.saveUser(user);
 
         return "redirect:/user/login";

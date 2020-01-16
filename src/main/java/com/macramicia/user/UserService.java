@@ -1,14 +1,12 @@
 package com.macramicia.user;
 
-import com.macramicia.user.User;
-import com.macramicia.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService  {
 
-    public UserRepository userRepository;
+    public final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {

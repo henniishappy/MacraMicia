@@ -1,7 +1,6 @@
 package com.macramicia.courses;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -20,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class CoursesControllerTest {
 
-    private CourseRepository courseRepository = mock(CourseRepository.class);
-    private CoursesController coursesController = new CoursesController(courseRepository);
-    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
+    private final CourseRepository courseRepository = mock(CourseRepository.class);
+    private final CoursesController coursesController = new CoursesController(courseRepository);
+    private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(coursesController).build();
 
 
     @Test

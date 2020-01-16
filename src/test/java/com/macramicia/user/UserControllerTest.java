@@ -15,11 +15,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserControllerTest {
 
-    private UserService userService = mock(UserService.class);
-    private BCryptEncoderConfig encoderConfig = mock(BCryptEncoderConfig.class);
-    private UserController userController = new UserController(userService, encoderConfig);
+    private final UserService userService = mock(UserService.class);
+    private final BCryptEncoderConfig encoderConfig = mock(BCryptEncoderConfig.class);
+    private final UserController userController = new UserController(userService, encoderConfig);
 
-    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     @Test
     public void getLoginPageRendersLogin() throws Exception {

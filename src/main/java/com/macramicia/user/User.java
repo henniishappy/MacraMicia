@@ -1,10 +1,6 @@
 package com.macramicia.user;
 
-import com.macramicia.BCryptEncoderConfig;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity
 //@Table(name = "user")
@@ -18,6 +14,9 @@ public class User {
     private String username;
     private String password;
     private String email;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Role role;
 
     /* Getters and Setters */
 
@@ -67,5 +66,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
