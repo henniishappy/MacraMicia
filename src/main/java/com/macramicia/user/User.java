@@ -1,6 +1,11 @@
 package com.macramicia.user;
 
+import com.macramicia.courses.Course;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name = "user")
@@ -17,6 +22,9 @@ public class User {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Role role;
+
+    @ElementCollection
+    private List<Course> courses = new ArrayList<>();
 
     /* Getters and Setters */
 
@@ -74,5 +82,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public boolean addCourse(Course c) {
+        return courses.add(c);
     }
 }
