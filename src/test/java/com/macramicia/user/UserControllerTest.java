@@ -26,14 +26,14 @@ class UserControllerTest {
         mockMvc.perform(get(
                 "/user/login"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("login"));
+                .andExpect(view().name("authenticate"));
     }
 
     @Test
     public void newUserRendersSignUpForm() throws Exception {
         mockMvc.perform(get("/user/registration"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("registration"))
+                .andExpect(view().name("sign_up"))
                 .andExpect(model().attributeExists("user"));
     }
 

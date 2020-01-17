@@ -4,6 +4,7 @@ import com.macramicia.BCryptEncoderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,33 +18,27 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
     private final UserService userService;
-    private final BCryptEncoderConfig encoderConfig;
 
     @Autowired
-    public UserController(UserService userService, BCryptEncoderConfig encoderConfig) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.encoderConfig = encoderConfig;
     }
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login";
+        return "authenticate";
     }
 
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "registration";
+        return "sign_up";
     }
 
     @PostMapping("/registration/create")
     public String createUser(@ModelAttribute User user) {
-        String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
-        user.setPassword(encryptedPw);
-
         Role role = new Role();
         role.setName("USER");
-
         user.setRole(role);
 
         userService.saveUser(user);
