@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <title>Create Course</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/on_create_course_submit_event.js}"></script>
 </head>
 <body class="bg-dark text-white">
   <header th:insert="fragments/header.html :: universalheader"></header>
@@ -15,12 +16,11 @@
   <div class="container p-3 my-4 bg-secondary" align="center">
     <h1 class="macra text-center">Create a new course</h1>
 
-    <form class="form-horizontal" action="#" th:action="@{/courses/create}" th:object="${course}" method="post">
-
+    <form class="form-horizontal" th:action="@{/courses/create}" th:object="${course}" onsubmit="return validateDateTime()" method="post">
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Title*</label>
         <div class="col-sm-8">
-          <input class="form-control" name="title" type="text" placeholder="Learn Macramee" th:field="*{title}" required>
+          <input class="form-control" th:id="title" name="title" type="text" placeholder="Learn Macramee" th:field="*{title}" required>
         </div>
         <!--<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>-->
       </div>
@@ -28,7 +28,7 @@
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Description</label>
         <div class="col-sm-8">
-          <textarea class="form-control" rows="5" name="description" type="text" placeholder="Are you interested in macramee but you do not know how to do it? Let's create something together. I'll show you how to make your own wall hanging or planthanger, explaining you step by step how to knot." th:field="*{description}"></textarea>
+          <textarea class="form-control" rows="5" th:id="description" name="description" type="text" placeholder="Are you interested in macramee but you do not know how to do it? Let's create something together. I'll show you how to make your own wall hanging or planthanger, explaining you step by step how to knot." th:field="*{description}"></textarea>
         </div>
         <!--<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</span>-->
       </div>
@@ -36,7 +36,7 @@
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Date*</label>
         <div class="col-sm-8">
-          <input class="form-control" name="date" type="date" th:field="*{date}" required>
+          <input class="form-control" th:id="date" name="date" type="date" required>
         </div>
         <!--<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Name Error</span>-->
       </div>
@@ -44,7 +44,7 @@
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Time*</label>
         <div class="col-sm-8">
-          <input class="form-control" name="time" type="time" th:field="*{time}" required>
+          <input class="form-control" th:id="time" name="time" type="time" required>
         </div>
         <!--<span th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Name Error</span>-->
       </div>
@@ -52,7 +52,7 @@
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Venue*</label>
         <div class="col-sm-8">
-          <textarea class="form-control" rows="3" name="venue" type="text" placeholder="Friedrichshain" th:field="*{venue}" required></textarea>
+          <textarea class="form-control" rows="3" th:id="venue" name="venue" type="text" placeholder="Friedrichshain" th:field="*{venue}" required></textarea>
         </div>
         <!--<span th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Name Error</span>-->
       </div>
@@ -60,7 +60,7 @@
       <div class="form-group row">
         <label class="col-form-label col-sm-3">Maximum Spots</label>
         <div class="col-sm-8">
-          <input class="form-control" name="maxSpots" type="number" th:field="*{maxSpots}">
+          <input class="form-control" th:id="maxSpots" name="maxSpots" type="number" th:value="1" min="1">
         </div><!--<span th:if="${#fields.hasErrors('maxSpots')}" th:errors="*{maxSpots}">Name Error</span>-->
       </div>
 
