@@ -23,10 +23,16 @@ public class ProfileController {
 
 	@GetMapping(value = "/addCourse")
 	public String updateMyCourses(@ModelAttribute Course newCourse, Model model, Principal principal) {
-		User currentUser = userService.userRepository.findUserByUsername(principal.getName());
+		System.out.println(principal.getName());
+		System.out.println(userService.userRepository.findAll());
+
+		User currentUser = userService.findUserByUsername(principal.getName());
 		currentUser.addCourse(newCourse);
+
 		System.out.println(currentUser.getCourses().get(0).getTitle());
+
 		model.addAttribute("myCourses", currentUser.getCourses());
+
 		System.out.println(model.getAttribute("myCourses"));
 		return "profile";
 	}

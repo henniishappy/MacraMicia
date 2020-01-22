@@ -20,6 +20,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     public MyUserDetailsService(UserService userService) {
+        this.userService = userService;
         defaultUser.setUsername("user");
         defaultUser.setPassword("$2y$04$e6tigQZn2VrtVlKrjVxQ1eOjyXpy7qxpDuFz1Ep2Ired.jIpmj4.q");
 
@@ -27,7 +28,7 @@ public class MyUserDetailsService implements UserDetailsService {
         role.setName("ADMIN");
         defaultUser.setRole(role);
 
-        this.userService = userService;
+        //userService.saveUser(defaultUser);
     }
 
 

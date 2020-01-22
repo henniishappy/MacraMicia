@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
   <meta charset="UTF-8">
   <title>Courses</title>
@@ -23,33 +25,33 @@
         <form name="f" th:action="@{/courses/addCourseToProfile}" th:object="${newCourse}" method="post" class="form-horizontal">
           <div class="card-header">
             <h4 class="card-title" th:text="${course.title}"></h4>
-            <input type="hidden" th:value="${course.title}" th:field="*{title}">
+            <input type="hidden" th:value="${course.title}" th:id="title">
           </div>
           <div class="card-body">
             <p>
               <label class="card-text" th:text="${course.description}" ></label>
-              <input type="hidden" th:value="${course.description}" th:field="*{description}">
+              <input type="hidden" th:value="${course.description}" th:id="time">
             </p>
             <p>
               <label class="card-text" th:text="'Date: ' + ${course.date}"></label>
-              <input type="hidden" th:value="${course.date}" th:field="*{date}">
+              <input type="hidden" th:value="${course.date}" th:id="time">
             </p>
             <p>
               <label class="card-text" th:text="'Time: ' + ${course.time}"></label>
-              <input type="hidden" th:value="${course.time}" th:field="*{time}">
+              <input type="hidden" th:value="${course.time}" th:id="time">
             </p>
             <p>
               <label class="card-text" th:text="'Venue: ' + ${course.venue}"></label>
-              <input type="hidden" th:value="${course.venue}" th:field="*{venue}">
+              <input type="hidden" th:value="${course.venue}" th:id="venue">
             </p>
             <p>
               <label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label>
-              <input type="hidden" th:value="${course.maxSpots}" th:field="*{maxSpots}">
+              <input type="hidden" th:value="${course.maxSpots}" th:id="maxSpots">
             </p>
           </div>
           <div class="card-footer">
             <!-- active if remaining spots > 0 -->
-            <input type="submit" value="Book a Spot" class="btn btn-dark">
+            <input type="submit" value="Book a Spot" class="btn btn-dark" sec:authorize="isAuthenticated()">
             <!--
             <a href="/profile/addCourse" class="btn btn-dark">Book a Spot!</a>
             -->

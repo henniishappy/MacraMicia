@@ -37,7 +37,7 @@ public class CoursesController {
 		return "courses";
 	}
 
-	@GetMapping(value = "/addCourseToProfile")
+	@PostMapping(value = "/addCourseToProfile")
 	public String addCourseToProfile(@ModelAttribute("newCourse") Course newCourse, Model model) {
 		model.addAttribute("newCourse", new Course());
 		return "redirect:/profile/addCourse";
