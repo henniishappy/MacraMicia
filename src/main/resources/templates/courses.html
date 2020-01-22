@@ -20,19 +20,41 @@
         <p>No courses are currently available.</p>
       </div>
       <div class="card bg-light" th:each="course: ${courses}">
-        <div class="card-header">
-          <h4 class="card-title" th:text="${course.title}"></h4>
-        </div>
-        <div class="card-body">
-          <p><label class="card-text" th:text="${course.description}"></label></p>
-          <p><label class="card-text" th:text="'Date: ' + ${course.date}"></label></p>
-          <p><label class="card-text" th:text="'Time: ' + ${course.time}"></label></p>
-          <p><label class="card-text" th:text="'Venue: ' + ${course.venue}"></label></p>
-          <p><label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label></p>
-        </div>
-        <div class="card-footer">
-          <a href="/profile/addCourse" class="btn btn-dark">Book a Spot!</a>
-        </div>
+        <form name="f" th:action="@{/courses/addCourseToProfile}" th:object="${newCourse}" method="post" class="form-horizontal">
+          <div class="card-header">
+            <h4 class="card-title" th:text="${course.title}"></h4>
+            <input type="hidden" th:value="${course.title}" th:field="*{title}">
+          </div>
+          <div class="card-body">
+            <p>
+              <label class="card-text" th:text="${course.description}" ></label>
+              <input type="hidden" th:value="${course.description}" th:field="*{description}">
+            </p>
+            <p>
+              <label class="card-text" th:text="'Date: ' + ${course.date}"></label>
+              <input type="hidden" th:value="${course.date}" th:field="*{date}">
+            </p>
+            <p>
+              <label class="card-text" th:text="'Time: ' + ${course.time}"></label>
+              <input type="hidden" th:value="${course.time}" th:field="*{time}">
+            </p>
+            <p>
+              <label class="card-text" th:text="'Venue: ' + ${course.venue}"></label>
+              <input type="hidden" th:value="${course.venue}" th:field="*{venue}">
+            </p>
+            <p>
+              <label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label>
+              <input type="hidden" th:value="${course.maxSpots}" th:field="*{maxSpots}">
+            </p>
+          </div>
+          <div class="card-footer">
+            <!-- active if remaining spots > 0 -->
+            <input type="submit" value="Book a Spot" class="btn btn-dark">
+            <!--
+            <a href="/profile/addCourse" class="btn btn-dark">Book a Spot!</a>
+            -->
+          </div>
+        </form>
       </div>
     </div>
   </div>

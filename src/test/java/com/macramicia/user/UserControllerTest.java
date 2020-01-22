@@ -1,6 +1,7 @@
 package com.macramicia.user;
 
 import com.macramicia.BCryptEncoderConfig;
+import com.macramicia.EmailService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -16,8 +17,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTest {
 
     private final UserService userService = mock(UserService.class);
+    private final EmailService emailService = mock(EmailService.class);
     private final BCryptEncoderConfig encoderConfig = mock(BCryptEncoderConfig.class);
-    private final UserController userController = new UserController(userService, encoderConfig);
+    private final UserController userController = new UserController(userService, emailService);
 
     private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 

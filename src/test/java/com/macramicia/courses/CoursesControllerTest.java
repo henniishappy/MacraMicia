@@ -34,7 +34,7 @@ public class CoursesControllerTest {
 
     @Test
     public void createCourse_savesCourseInRepository() throws Exception {
-        mockMvc.perform(post("/courses/show")
+        mockMvc.perform(post("/courses/create")
                 .param("title", "New Course")
                 .param("description", "You can learn anything you want.")
                 .param("date","2020-01-01")

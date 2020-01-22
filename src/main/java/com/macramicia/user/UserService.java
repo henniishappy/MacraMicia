@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService  {
-
     public final UserRepository userRepository;
     private final BCryptEncoderConfig encoderConfig;
 
@@ -21,7 +20,6 @@ public class UserService  {
     }
 
     public void saveUser(User user) {
-
         String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPw);
 

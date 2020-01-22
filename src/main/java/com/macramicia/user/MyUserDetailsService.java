@@ -33,7 +33,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         User user;
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
@@ -46,8 +45,6 @@ public class MyUserDetailsService implements UserDetailsService {
             if(user == null)
                 throw new UsernameNotFoundException("User not found!");
         }
-
-        System.out.println(user.getUsername() + " " + user.getRole().getName());
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);

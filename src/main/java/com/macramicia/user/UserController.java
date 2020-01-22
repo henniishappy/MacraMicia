@@ -1,10 +1,9 @@
 package com.macramicia.user;
 
-import com.macramicia.BCryptEncoderConfig;
+import com.macramicia.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
     private final UserService userService;
+    private final EmailService emailService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, EmailService emailService) {
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/login")
@@ -42,6 +43,7 @@ public class UserController {
         user.setRole(role);
 
         userService.saveUser(user);
+        emailService.sendNewAccountMail(user);
         return "redirect:/user/login";
     }
 

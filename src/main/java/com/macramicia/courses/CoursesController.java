@@ -24,7 +24,7 @@ public class CoursesController {
 		return "createCourse";
 	}
 
-	@PostMapping(value = "/show")
+	@PostMapping(value = "/create")
 	public String createCourse(@ModelAttribute Course course) {
 		courseRepository.save(course);
 		return "redirect:all";
@@ -35,5 +35,11 @@ public class CoursesController {
 		List<Course> allCourses = courseRepository.findAll();
 		model.addAttribute("courses", allCourses);
 		return "courses";
+	}
+
+	@GetMapping(value = "/addCourseToProfile")
+	public String addCourseToProfile(@ModelAttribute("newCourse") Course newCourse, Model model) {
+		model.addAttribute("newCourse", new Course());
+		return "redirect:/profile/addCourse";
 	}
 }

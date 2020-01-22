@@ -6,9 +6,7 @@ import com.macramicia.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -24,17 +22,18 @@ public class ProfileController {
 	}
 
 	@GetMapping(value = "/addCourse")
-	public String updateMyCourses(@ModelAttribute Course course, Model model, Principal principal) {
+	public String updateMyCourses(@ModelAttribute Course newCourse, Model model, Principal principal) {
 		User currentUser = userService.userRepository.findUserByUsername(principal.getName());
-		currentUser.addCourse(course);
+		currentUser.addCourse(newCourse);
+		System.out.println(currentUser.getCourses().get(0).getTitle());
 		model.addAttribute("myCourses", currentUser.getCourses());
+		System.out.println(model.getAttribute("myCourses"));
 		return "profile";
 	}
 
 	@GetMapping(value = "/show")
 	public String showMyCourses(Model model, Principal principal) {
 		User currentUser = userService.userRepository.findUserByUsername(principal.getName());
-		System.out.println(currentUser);
 		if (!model.containsAttribute("myCourses"))
 			model.addAttribute("myCourses", currentUser.getCourses());
 		return "profile";
