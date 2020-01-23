@@ -51,7 +51,7 @@
           </div>
           <div class="card-footer">
             <!-- active if remaining spots > 0 -->
-            <input type="submit" value="Book a Spot" class="btn btn-dark" sec:authorize="isAuthenticated()">
+              <input type="submit" value="Book a Spot" class="btn btn-dark" sec:authorize="isAuthenticated() && hasAuthority('USER')">
           </div>
         </form>
       </div>
