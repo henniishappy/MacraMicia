@@ -5,7 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -29,9 +32,12 @@ public class Course {
 
     private int maxSpots;
 
-    @OneToMany
-    private List<User> participants;
-
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            mappedBy = "courses")
+    private Set<User> participants = new HashSet<>();
 
     public long getId() {
         return this.id;
@@ -77,37 +83,42 @@ public class Course {
         this.venue = venue;
     }
 
-    public void setMaxSpots(int maxSpots) {
-        this.maxSpots = maxSpots;
-    }
-
     public int getMaxSpots() {
         return this.maxSpots;
     }
 
-    public List<User> getParticipants() { return this.participants; }
+    public void setMaxSpots(int maxSpots) {
+        this.maxSpots = maxSpots;
+    }
+
+    public Set<User> getParticipants() { return this.participants; }
 
     public int getNumberOfParticipants() {
         if (this.participants.isEmpty()) return 0;
         else return this.participants.size();
     }
 
-    public int getFreeSpots() { return this.maxSpots - this.participants.size(); }
+    public int getFreeSpots() {
+        return this.maxSpots - this.participants.size();
+    }
 
     public boolean isFull() {
         return getFreeSpots() == 0;
     }
 
-    public boolean addParticipant(User participant) {
+    public boolean addParticipant(User user) {
         if (isFull()) return false;
         else {
-            this.participants.add(participant);
+            this.participants.add(user);
             return true;
         }
     }
 
-    public boolean removeParticipant(User cancellation) { return this.participants.remove(cancellation); }
+    public boolean removeParticipant(User user) {
+        return this.participants.remove(user);
+    }
 
-    public boolean isParticipant(User user) { return this.participants.contains(user); }
-
+    public boolean isParticipant(User user) {
+        return this.participants.contains(user);
+    }
 }

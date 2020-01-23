@@ -7,13 +7,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.mail.SendFailedException;
+
 @Service
 public class EmailService {
 	@Autowired
 	private JavaMailSender emailSender;
 
 	@Async("sendMailExecutor")
-	public void sendNewAccountMail(User user) {
+	public void sendNewAccountMail(User user) throws SendFailedException {
 		String to = user.getEmail();
 		String subject = "New Macra Micia Account";
 		String text = new StringBuilder()
@@ -32,7 +34,7 @@ public class EmailService {
 	}
 
 	@Async("sendMailExecutor")
-	public void sendMail(String to, String subject, String text) {
+	public void sendMail(String to, String subject, String text) throws SendFailedException {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
 		message.setSubject(subject);

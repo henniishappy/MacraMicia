@@ -3,19 +3,17 @@ package com.macramicia.user;
 import com.macramicia.courses.Course;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-//@Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String firstName;
     private String lastName;
+
+    @Id
+    @Column(name = "username", nullable = false)
     private String username;
     private String password;
     private String email;
@@ -23,18 +21,20 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Role role;
 
-    @OneToMany
-    private List<Course> courses = new ArrayList<>();
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "course_book",
+            joinColumns = @JoinColumn(name = "username"),
+            inverseJoinColumns = @JoinColumn(name = "id"))
+    private Set<Course> courses = new HashSet<>();
+
+    @Transient
+    private static User currentUser;
 
     /* Getters and Setters */
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -84,11 +84,23 @@ public class User {
         this.role = role;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
     public boolean addCourse(Course c) {
         return courses.add(c);
+    }
+
+    public boolean removeCourse(Course c) {
+        return courses.remove(c);
+    }
+
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 }

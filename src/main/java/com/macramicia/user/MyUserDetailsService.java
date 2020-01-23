@@ -27,8 +27,6 @@ public class MyUserDetailsService implements UserDetailsService {
         Role role = new Role();
         role.setName("ADMIN");
         defaultUser.setRole(role);
-
-        //userService.saveUser(defaultUser);
     }
 
 

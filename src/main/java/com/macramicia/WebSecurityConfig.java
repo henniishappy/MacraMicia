@@ -26,18 +26,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                    .antMatchers("/courses/new").hasAuthority("ADMIN")
-                    .antMatchers("/courses/create").hasAuthority("ADMIN")
-                    .and()
-                .formLogin()
-                    .loginProcessingUrl("/user/login/authenticate")
-                    .and()
-                .logout()
-                    .clearAuthentication(true)
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/logoutSuccess")
-                    .permitAll();
+            .authorizeRequests()
+                .antMatchers("/courses/new").hasAuthority("ADMIN")
+                .antMatchers("/courses/create").hasAuthority("ADMIN")
+                .and()
+            .formLogin()
+                .loginProcessingUrl("/user/login/authenticate")
+                .and()
+            .logout()
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/logoutSuccess")
+                .permitAll();
     }
 
     @Autowired

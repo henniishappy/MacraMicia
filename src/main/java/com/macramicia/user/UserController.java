@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.SendFailedException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/user")
@@ -37,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/registration/create")
-    public String createUser(@ModelAttribute User user) {
+    public String createUser(@ModelAttribute User user) throws SendFailedException {
         Role role = new Role();
         role.setName("USER");
         user.setRole(role);
