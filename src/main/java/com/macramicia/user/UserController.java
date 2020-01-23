@@ -44,7 +44,7 @@ public class UserController {
         role.setName("USER");
         user.setRole(role);
 
-        userService.saveUser(user);
+        userService.saveNewUser(user);
         emailService.sendNewAccountMail(user);
         return "redirect:/user/login";
     }

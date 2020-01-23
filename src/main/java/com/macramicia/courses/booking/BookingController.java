@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -23,29 +24,24 @@ public class BookingController {
 		this.userService = userService;
 	}
 
-	@GetMapping(value = "/addCourse")
+	@PostMapping(value = "/book")
 	public String updateMyCourses(@ModelAttribute("newCourse") Course newCourse, Principal principal) {
-		if (User.getCurrentUser() == null) {
-			User.setCurrentUser(userService.userRepository.findUserByUsername(principal.getName()));
-		}
-		User currentUser = User.getCurrentUser();
+		User currentUser = userService.findUserByUsername(principal.getName());
 
-		//not working yet
 		if (!currentUser.getCourses().contains(newCourse)) {
 			currentUser.addCourse(newCourse);
 			newCourse.addParticipant(currentUser);
+
+			userService.save(currentUser);
 		}
-		//add alert in else-block with message: "You already booked this course"
 
 		return "redirect:/courses/profile/show";
+
 	}
 
 	@GetMapping(value = "/show")
 	public String showMyCourses(Model model, Principal principal) {
-		if (User.getCurrentUser() == null) {
-			User.setCurrentUser(userService.userRepository.findUserByUsername(principal.getName()));
-		}
-		User currentUser = User.getCurrentUser();
+		User currentUser = userService.findUserByUsername(principal.getName());
 
 		model.addAttribute("myCourses", currentUser.getCourses());
 		return "profile";

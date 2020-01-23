@@ -49,44 +49,4 @@ public class MyUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 
-    /*
-        User user;
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-        if(defaultUser.getUsername().equals(username)) {
-            user = defaultUser;
-        }
-        else {
-            user = userService.findUserByUsername(username);
-
-            if(user == null) {
-                throw new UsernameNotFoundException("User not found!");
-            }
-            else {
-                System.out.println(user.getUsername());
-                grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
-            }
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-
-    }
-        /*User user;
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-        if(defaultUser.getUsername().equals(username)) {
-            user = defaultUser;
-        }
-        else {
-            user = userService.findUserByUsername(username);
-
-            if(user == null) {
-                throw new UsernameNotFoundException("User not found!");
-            }
-            else {
-                System.out.println(user.getUsername());
-                grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
-            }
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-    }*/
 }

@@ -3,6 +3,7 @@ package com.macramicia.user;
 import com.macramicia.courses.Course;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +14,9 @@ public class User {
     private String lastName;
 
     @Id
-    @Column(name = "username", nullable = false)
+    @NotNull
     private String username;
+
     private String password;
     private String email;
 
@@ -24,15 +26,15 @@ public class User {
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE},
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     @JoinTable(
-            name = "course_book",
-            joinColumns = @JoinColumn(name = "username"),
-            inverseJoinColumns = @JoinColumn(name = "id"))
+            name = "user_course",
+            joinColumns = @JoinColumn(name = "user_username", referencedColumnName = "username"),
+            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})//@JoinColumn(name = "id"))
     private Set<Course> courses = new HashSet<>();
 
-    @Transient
-    private static User currentUser;
+    /*@Transient
+    private static User currentUser;*/
 
     /* Getters and Setters */
 
@@ -89,18 +91,18 @@ public class User {
     }
 
     public boolean addCourse(Course c) {
-        return courses.add(c);
+        return this.courses.add(c);
     }
 
     public boolean removeCourse(Course c) {
-        return courses.remove(c);
+        return this.courses.remove(c);
     }
-
+/*
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
 
     public static User getCurrentUser() {
         return currentUser;
-    }
+    }*/
 }
