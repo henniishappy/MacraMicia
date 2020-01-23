@@ -12,7 +12,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "courses")
+//@Table(name = "courses")
 public class Course {
 
     @Id
