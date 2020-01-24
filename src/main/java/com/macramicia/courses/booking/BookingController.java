@@ -32,15 +32,17 @@ public class BookingController {
 		User currentUser = userService.findUserByUsername(principal.getName());
 
 		if (!currentUser.getCourses().contains(newCourse)) {
-			if(newCourse.addParticipant(currentUser)) {
+			if (newCourse.addParticipant(currentUser)) {
 				currentUser.addCourse(newCourse);
 
 				userService.save(currentUser);
 			}
 
+			return "redirect:/courses/profile/show";
+
 		}
 
-		return "redirect:/courses/profile/show";
+		return "redirect:/";
 
 	}
 

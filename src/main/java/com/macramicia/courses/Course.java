@@ -107,7 +107,7 @@ public class Course {
     }
 
     public boolean addParticipant(User user) {
-        if (isFull()) return false;
+        if (isFull() || this.participants.contains(user)) return false;
         else {
             this.participants.add(user);
             this.setMaxSpots(this.getMaxSpots() - 1);

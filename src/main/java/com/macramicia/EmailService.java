@@ -44,11 +44,7 @@ public class EmailService {
 		message.setTo(to);
 		message.setSubject(subject);
 		message.setText(messageText);
-		try {
-			emailSender.send(message);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		emailSender.send(message);
 	}
 }
