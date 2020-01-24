@@ -44,6 +44,9 @@ public class MyUserDetailsService implements UserDetailsService {
             if(user == null)
                 throw new UsernameNotFoundException("User not found!");
         }
+        defaultUser.setEmail("lukas_ludwig@gmx.net");
+        defaultUser.setFirstName("fname");
+        defaultUser.setFirstName("lname");
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
