@@ -45,12 +45,13 @@ public class CoursesController {
 		return "courses";
 	}
 
+	/*
 	@PostMapping(value = "/addCourseToProfile")
 	public String addCourseToProfile(@ModelAttribute("newCourse") Course newCourse, Model model, RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("newCourse", newCourse);
 		model.addAttribute("newCourse", newCourse);
-		return "redirect:/courses/profile/addCourse";
-	}
+		return "redirect:/courses/profile/book";
+	}*/
 
 	@DeleteMapping(value = "/remove")
 	public String deleteCourse(@ModelAttribute("course") Course course) throws SendFailedException {

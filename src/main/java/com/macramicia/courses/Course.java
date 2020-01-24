@@ -110,6 +110,7 @@ public class Course {
         if (isFull()) return false;
         else {
             this.participants.add(user);
+            this.setMaxSpots(this.getMaxSpots() - 1);
             return true;
         }
     }

@@ -25,12 +25,7 @@ public class EmailService {
 				.append(System.lineSeparator())
 				.append("A new account has been created for You. " +
 						"We hope You will enjoy the courses on our website.")
-				.append(System.lineSeparator())
-				.append(System.lineSeparator())
-				.append("Sincerely,")
-				.append(System.lineSeparator())
-				.append(System.lineSeparator())
-				.append("Team Macra Micia").toString();
+				.toString();
 		sendMail(to, subject, text);
 	}
 

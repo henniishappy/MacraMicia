@@ -22,7 +22,7 @@
         <p>No courses are currently available.</p>
       </div>
       <div class="card bg-light" th:each="course: ${courses}">
-        <form name="f" action="#" th:action="@{/courses/addCourseToProfile}" th:object="${newCourse}" method="post" class="form-horizontal">
+        <form name="f" action="#" th:action="@{/courses/profile/book}" th:object="${newCourse}" method="post" class="form-horizontal">
           <div class="card-header">
             <h4 class="card-title" th:text="${course.title}"></h4>
             <input type="hidden" th:value="${course.title}" th:id="title" th:name="title">
