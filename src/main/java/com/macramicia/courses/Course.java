@@ -103,7 +103,7 @@ public class Course {
     }
 
     public boolean isFull() {
-        return getFreeSpots() == 0;
+        return this.getFreeSpots() == 0;
     }
 
     public boolean addParticipant(User user) {

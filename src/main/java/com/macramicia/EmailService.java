@@ -11,6 +11,7 @@ import javax.mail.SendFailedException;
 
 @Service
 public class EmailService {
+
 	@Autowired
 	private JavaMailSender emailSender;
 

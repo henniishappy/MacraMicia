@@ -44,7 +44,7 @@ public class UserController {
         role.setName("USER");
         user.setRole(role);
 
-        userService.saveNewUser(user);
+        userService.save(user);
         emailService.sendNewAccountMail(user);
         return "redirect:/user/login";
     }
@@ -56,5 +56,22 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/user/login?logout";
+    }
+
+    @GetMapping("/update/show")
+    public String showUpdateProfilePage() {
+        return "settings";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute User user, Principal principal) {
+        User currentUser = userService.findUserByUsername(principal.getName());
+
+        currentUser.setPassword(user.getPassword());
+        currentUser.setEmail(user.getEmail());
+
+        userService.save(currentUser);
+
+        return "redirect:/";
     }
 }

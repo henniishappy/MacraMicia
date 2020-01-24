@@ -20,14 +20,18 @@ public class UserService  {
         return userRepository.findUserByUsername(username);
     }
 
-    public void saveNewUser(User user) {
+    /*public void saveNewUser(User user) {
         String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPw);
 
         userRepository.save(user);
-    }
+    }*/
 
     public void save(User user) {
-        userRepository.save(user);
+         if(!encoderConfig.isEncrypted(user.getPassword())) {
+             String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
+             user.setPassword(encryptedPw);
+         }
+             userRepository.save(user);
     }
 }

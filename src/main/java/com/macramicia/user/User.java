@@ -3,6 +3,7 @@ package com.macramicia.user;
 import com.macramicia.courses.Course;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,8 @@ public class User {
     private String username;
 
     private String password;
+
+    @Email
     private String email;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

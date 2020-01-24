@@ -40,9 +40,16 @@ public class CoursesController {
 
 	@PostMapping(value = "/addCourseToProfile")
 	public String addCourseToProfile(@ModelAttribute("newCourse") Course newCourse, Model model, RedirectAttributes redirectAttributes) {
-		//pass newCourse attribute
 		redirectAttributes.addFlashAttribute("newCourse", newCourse);
 		model.addAttribute("newCourse", newCourse);
 		return "redirect:/courses/profile/addCourse";
 	}
+
+	@DeleteMapping(value = "/delete")
+	public String deleteCourse(@ModelAttribute("course") Course course) {
+		courseRepository.delete(course);
+		return "redirect:/courses";
+	}
+
+
 }

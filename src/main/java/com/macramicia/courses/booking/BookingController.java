@@ -1,6 +1,7 @@
 package com.macramicia.courses.booking;
 
 import com.macramicia.courses.Course;
+import com.macramicia.courses.CourseRepository;
 import com.macramicia.user.User;
 import com.macramicia.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,12 @@ import java.security.Principal;
 public class BookingController {
 
 	private final UserService userService;
+	private final CourseRepository courseRepository;
 
 	@Autowired
-	public BookingController (UserService userService) {
+	public BookingController (UserService userService, CourseRepository courseRepository) {
 		this.userService = userService;
+		this.courseRepository = courseRepository;
 	}
 
 	@PostMapping(value = "/book")
@@ -29,10 +32,12 @@ public class BookingController {
 		User currentUser = userService.findUserByUsername(principal.getName());
 
 		if (!currentUser.getCourses().contains(newCourse)) {
-			currentUser.addCourse(newCourse);
-			newCourse.addParticipant(currentUser);
+			if(newCourse.addParticipant(currentUser)) {
+				currentUser.addCourse(newCourse);
 
-			userService.save(currentUser);
+				userService.save(currentUser);
+			}
+
 		}
 
 		return "redirect:/courses/profile/show";
