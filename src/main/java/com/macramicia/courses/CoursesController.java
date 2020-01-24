@@ -68,4 +68,25 @@ public class CoursesController {
 		return "redirect:/courses";
 	}
 
+	@PutMapping(value = "/update")
+	public String updateCourse(@ModelAttribute("course") Course course) throws SendFailedException {
+		Course courseToUpdate = courseRepository.findCourseById(course.getId());
+		String name = course.getTitle();
+		Set<User> participants = course.getParticipants();
+
+		courseToUpdate.setVenue(course.getVenue());
+		courseToUpdate.setDate(course.getDate());
+		courseToUpdate.setTime(course.getTime());
+
+		courseRepository.save(courseToUpdate);
+
+		for(User user : participants) {
+			emailService.sendMail(user.getEmail(), "Your booked course " + name, "We would like to inform you" +
+					" that your course " + name + " has changed its date and/or venue and/or time. Please check under your " +
+					"profile for further information");
+		}
+
+		return "redirect:/courses";
+	}
+
 }

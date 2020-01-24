@@ -64,13 +64,16 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute User user, Principal principal) {
+    public String updateUser(@ModelAttribute User user, Principal principal) throws SendFailedException {
         User currentUser = userService.findUserByUsername(principal.getName());
 
         currentUser.setPassword(user.getPassword());
         currentUser.setEmail(user.getEmail());
 
         userService.save(currentUser);
+
+        emailService.sendMail(user.getEmail(), "Account Update", "This is to inform you that there has been" +
+                " a change of password and/or e-mail for your account.");
 
         return "redirect:/";
     }
