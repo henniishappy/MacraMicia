@@ -36,10 +36,19 @@ public class EmailService {
 
 	@Async("sendMailExecutor")
 	public void sendMail(String to, String subject, String text) throws SendFailedException {
+		String messageText = new StringBuilder()
+				.append(text)
+				.append(System.lineSeparator())
+				.append(System.lineSeparator())
+				.append("Sincerely,")
+				.append(System.lineSeparator())
+				.append(System.lineSeparator())
+				.append("Team Macra Micia").toString();
+
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
 		message.setSubject(subject);
-		message.setText(text);
+		message.setText(messageText);
 		emailSender.send(message);
 	}
 }

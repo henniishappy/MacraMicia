@@ -1,22 +1,29 @@
 package com.macramicia.courses;
 
+import com.macramicia.EmailService;
+import com.macramicia.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.SendFailedException;
+import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/courses")
 public class CoursesController {
 
 	private final CourseRepository courseRepository;
+	private final EmailService emailService;
 
 	@Autowired
-	public CoursesController(CourseRepository courseRepository) {
+	public CoursesController(CourseRepository courseRepository, EmailService emailService) {
 		this.courseRepository = courseRepository;
+		this.emailService = emailService;
 	}
 
 	@GetMapping(value = "/new")
@@ -46,10 +53,18 @@ public class CoursesController {
 	}
 
 	@DeleteMapping(value = "/remove")
-	public String deleteCourse(@ModelAttribute("course") Course course) {
+	public String deleteCourse(@ModelAttribute("course") Course course) throws SendFailedException {
+		Set<User> participants = course.getParticipants();
+		String name = course.getTitle();
+
 		courseRepository.delete(course);
+
+		for(User user : participants) {
+			emailService.sendMail(user.getEmail(), "Your booked course " + name, "We are sorry to inform you" +
+					" that your course " + name + " got cancelled.");
+		}
+
 		return "redirect:/courses";
 	}
-
 
 }
