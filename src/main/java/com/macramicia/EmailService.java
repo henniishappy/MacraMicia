@@ -16,7 +16,7 @@ public class EmailService {
 	private JavaMailSender emailSender;
 
 	@Async("sendMailExecutor")
-	public void sendNewAccountMail(User user) throws SendFailedException {
+	public void sendNewAccountMail(User user) {
 		String to = user.getEmail();
 		String subject = "New Macra Micia Account";
 		String text = new StringBuilder()
@@ -30,7 +30,7 @@ public class EmailService {
 	}
 
 	@Async("sendMailExecutor")
-	public void sendMail(String to, String subject, String text) throws SendFailedException {
+	public void sendMail(String to, String subject, String text) {
 		String messageText = new StringBuilder()
 				.append(text)
 				.append(System.lineSeparator())
@@ -44,6 +44,11 @@ public class EmailService {
 		message.setTo(to);
 		message.setSubject(subject);
 		message.setText(messageText);
-		emailSender.send(message);
+		try {
+			emailSender.send(message);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

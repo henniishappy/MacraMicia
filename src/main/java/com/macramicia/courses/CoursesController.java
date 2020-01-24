@@ -54,7 +54,7 @@ public class CoursesController {
 	}*/
 
 	@DeleteMapping(value = "/remove")
-	public String deleteCourse(@ModelAttribute("course") Course course) throws SendFailedException {
+	public String deleteCourse(@ModelAttribute("course") Course course) {
 		Set<User> participants = course.getParticipants();
 		String name = course.getTitle();
 
@@ -69,7 +69,7 @@ public class CoursesController {
 	}
 
 	@PutMapping(value = "/update")
-	public String updateCourse(@ModelAttribute("course") Course course) throws SendFailedException {
+	public String updateCourse(@ModelAttribute("course") Course course) {
 		Course courseToUpdate = courseRepository.findCourseById(course.getId());
 		String name = course.getTitle();
 		Set<User> participants = course.getParticipants();

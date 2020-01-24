@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/registration/create")
-    public String createUser(@ModelAttribute User user) throws SendFailedException {
+    public String createUser(@ModelAttribute User user) {
         Role role = new Role();
         role.setName("USER");
         user.setRole(role);
@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute User user, Principal principal) throws SendFailedException {
+    public String updateUser(@ModelAttribute User user, Principal principal) {
         User currentUser = userService.findUserByUsername(principal.getName());
 
         currentUser.setPassword(user.getPassword());
