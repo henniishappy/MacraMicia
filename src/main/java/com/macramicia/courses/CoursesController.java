@@ -45,7 +45,7 @@ public class CoursesController {
 		return "redirect:/courses/profile/addCourse";
 	}
 
-	@DeleteMapping(value = "/delete")
+	@DeleteMapping(value = "/remove")
 	public String deleteCourse(@ModelAttribute("course") Course course) {
 		courseRepository.delete(course);
 		return "redirect:/courses";
