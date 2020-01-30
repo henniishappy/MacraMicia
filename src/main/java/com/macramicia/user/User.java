@@ -24,7 +24,8 @@ public class User {
     @Email
     private String email;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @ManyToMany(cascade = {
