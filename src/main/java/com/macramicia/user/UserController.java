@@ -41,6 +41,9 @@ public class UserController {
 
     @PostMapping("/registration/create")
     public String createUser(@ModelAttribute User user) {
+        if (user.getPassword().length() < 6) {
+            return "redirect:/user/registration?passwordError";
+        }
         if(userService.findUserByUsername(user.getUsername()) == null &&
                 userService.findUserByEmail(user.getEmail()) == null) {
 
@@ -63,8 +66,7 @@ public class UserController {
             return "redirect:/user/login";
         }
 
-        return "redirect:/user/registration?error";
-
+        return "redirect:/user/registration?duplicateError";
     }
 
     @GetMapping("/logout")
