@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTest {
 
     private final UserService userService = mock(UserService.class);
+
     private final EmailService emailService = mock(EmailService.class);
     private final BCryptEncoderConfig encoderConfig = mock(BCryptEncoderConfig.class);
     private final UserController userController = new UserController(userService, emailService);
@@ -51,7 +52,7 @@ class UserControllerTest {
                 .andExpect(redirectedUrl("/user/login"));
 
         ArgumentCaptor<User> savedUser = ArgumentCaptor.forClass(User.class);
-        Mockito.verify(userService).saveUser(savedUser.capture());
+        Mockito.verify(userService).save(savedUser.capture());
         assertThat(savedUser.getValue().getFirstName()).isEqualTo("Us");
         assertThat(savedUser.getValue().getLastName()).isEqualTo("Pas");
         assertThat(savedUser.getValue().getUsername()).isEqualTo("user");

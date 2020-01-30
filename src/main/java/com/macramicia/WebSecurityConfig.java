@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/courses/update").hasAuthority("ADMIN")
                 .and()
             .formLogin()
+                .loginPage("/user/login")
                 .loginProcessingUrl("/user/login/authenticate")
                 .and()
             .logout()
