@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Course findCourseById(long id);
+    Course findCourseByTitle(String title);
 }
