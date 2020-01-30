@@ -10,7 +10,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<User> users;
 
     private String name;
@@ -21,5 +21,9 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 }

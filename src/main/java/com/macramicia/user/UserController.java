@@ -52,6 +52,7 @@ public class UserController {
                 role.setName("USER");
             }
 
+            role.addUser(user);
             user.setRole(role);
             userService.save(user);
 

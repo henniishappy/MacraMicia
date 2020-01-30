@@ -24,7 +24,7 @@ public class User {
     @Email
     private String email;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
