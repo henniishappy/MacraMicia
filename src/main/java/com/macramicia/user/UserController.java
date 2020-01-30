@@ -39,13 +39,18 @@ public class UserController {
 
     @PostMapping("/registration/create")
     public String createUser(@ModelAttribute User user) {
-        Role role = new Role();
-        role.setName("USER");
-        user.setRole(role);
+        if(userService.findUserByUsername(user.getUsername()) == null) {
+            Role role = new Role();
+            role.setName("USER");
+            user.setRole(role);
 
-        userService.save(user);
-        emailService.sendNewAccountMail(user);
-        return "redirect:/user/login";
+            userService.save(user);
+            emailService.sendNewAccountMail(user);
+            return "redirect:/user/login";
+        }
+
+        return "redirect:/user/registration?error";
+
     }
 
     @GetMapping("/logout")
