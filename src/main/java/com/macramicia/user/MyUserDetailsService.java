@@ -23,7 +23,7 @@ public class MyUserDetailsService implements UserDetailsService {
         this.userService = userService;
         defaultUser.setUsername("user");
         defaultUser.setPassword("$2y$04$e6tigQZn2VrtVlKrjVxQ1eOjyXpy7qxpDuFz1Ep2Ired.jIpmj4.q");
-        defaultUser.setEmail("lukas_ludwig@gmx.net");
+        defaultUser.setEmail("macramicia@gmail.com");
         defaultUser.setFirstName("fname");
         defaultUser.setLastName("lname");
 
