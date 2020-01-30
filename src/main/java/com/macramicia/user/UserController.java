@@ -44,7 +44,13 @@ public class UserController {
         if(userService.findUserByUsername(user.getUsername()) == null &&
                 userService.findUserByEmail(user.getEmail()) == null) {
 
-            Role role = roleRepository.findRoleByName("USER");
+            Role role;
+            role = roleRepository.findRoleByName("USER");
+
+            if(role == null) {
+                role = new Role();
+                role.setName("USER");
+            }
 
             user.setRole(role);
             userService.save(user);
