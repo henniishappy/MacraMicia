@@ -34,6 +34,16 @@ public class BookingController {
 		User currentUser = userService.findUserByUsername(principal.getName());
 		newCourse = courseRepository.findCourseByTitle(newCourse.getTitle());
 
+		System.out.println("Alle course-IDs beim user:");
+		for (Course course : currentUser.getCourses()) {
+		    System.out.println("course-ID: " + course.getId());
+        }
+
+        System.out.println("Alle course-IDs in courses:");
+		for (Course course : courseRepository.findAll()) {
+		    System.out.println("course-ID: " + course.getId());
+        }
+
 		Set<Course> courses = currentUser.getCourses();
 /*
 		for (Course course : courses) {

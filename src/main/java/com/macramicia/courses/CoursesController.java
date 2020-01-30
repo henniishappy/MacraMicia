@@ -31,26 +31,11 @@ public class CoursesController {
 
 	@PostMapping(value = "/create")
 	public String createCourse(@ModelAttribute Course course) {
-		System.out.println("-------- FIND ALL COURSES BEFORE SAVING NEW COURSE ----------");
-		for(Course course2 : courseRepository.findAll()) {
-			System.out.println(course2.getTitle());
-			System.out.println(course2.getId());
-		}
-
-
-
 		if(courseRepository.findCourseByTitle(course.getTitle()) != null) {
-			System.out.println("course already exists");
+			return "redirect:/courses/new?error";
 		} else {
 			course.setFreeSpots(course.getMaxSpots());
 			courseRepository.save(course);
-		}
-
-
-		System.out.println("-------- FIND ALL COURSES AFTER SAVING NEW COURSE ----------");
-		for(Course course2 : courseRepository.findAll()) {
-			System.out.println(course2.getTitle());
-			System.out.println(course2.getId());
 		}
 		return "redirect:all";
 	}
