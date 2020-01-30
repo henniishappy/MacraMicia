@@ -7,8 +7,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.mail.SendFailedException;
-
 @Service
 public class EmailService {
 
