@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name = "users")
 public class User {
 
     private String firstName;
@@ -37,10 +36,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})//@JoinColumn(name = "id"))
     private Set<Course> courses = new HashSet<>();
 
-    /*@Transient
-    private static User currentUser;*/
-
-    /* Getters and Setters */
 
     public String getFirstName() {
         return firstName;
@@ -101,12 +96,5 @@ public class User {
     public boolean removeCourse(Course c) {
         return this.courses.remove(c);
     }
-/*
-    public static void setCurrentUser(User user) {
-        currentUser = user;
-    }
 
-    public static User getCurrentUser() {
-        return currentUser;
-    }*/
 }
