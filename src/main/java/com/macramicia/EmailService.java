@@ -25,16 +25,9 @@ public class EmailService {
 						"You can now log in at: https://macramicia.herokuapp.com/user/login")
 				.append(System.lineSeparator())
 				.append("We hope you will enjoy the courses on our website.")
-      			.append(System.lineSeparator())
-				.append(System.lineSeparator())
-				.append("Yours,")
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
-      			.append("Team Macra Micia")
-				.append(System.lineSeparator())
-				.append(System.lineSeparator())
-				.append(System.lineSeparator())
-				.append("This wasn't you? + " +
+				.append("This wasn't you? " +
 						"Send us an email to macramicia@gmail.com and we'll sort this out for you.").toString();
 		sendMail(to, subject, text);
 	}
@@ -44,7 +37,16 @@ public class EmailService {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
 		message.setSubject(subject);
-		message.setText(text);
+		String mesg = new StringBuilder().append(text)
+				.append(System.lineSeparator())
+				.append(System.lineSeparator())
+				.append(System.lineSeparator())
+				.append("Yours,")
+				.append(System.lineSeparator())
+				.append(System.lineSeparator())
+				.append("Team Macra Micia").toString();
+
+		message.setText(mesg);
 		emailSender.send(message);
 	}
 }
