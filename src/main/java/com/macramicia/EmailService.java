@@ -21,16 +21,16 @@ public class EmailService {
 				.append("Welcome to the Macramicia Community, " + user.getUsername() + "!")
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
-
 				.append("A new account has been created for you. " +
-						"You can now log in at: https://macramicia.herokuapp.com/user/login" +
-						"We hope you will enjoy the courses on our website.")
-      	.append(System.lineSeparator())
+						"You can now log in at: https://macramicia.herokuapp.com/user/login")
+				.append(System.lineSeparator())
+				.append("We hope you will enjoy the courses on our website.")
+      			.append(System.lineSeparator())
 				.append(System.lineSeparator())
 				.append("Yours,")
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
-      	.append("Team Macra Micia")
+      			.append("Team Macra Micia")
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
