@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.SendFailedException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
@@ -29,13 +28,13 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "authenticate";
+        return "user/login/authenticate";
     }
 
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "sign_up";
+        return "user/registration/sign_up";
     }
 
     @PostMapping("/registration/create")
@@ -60,7 +59,7 @@ public class UserController {
 
     @GetMapping("/update/show")
     public String showUpdateProfilePage() {
-        return "settings";
+        return "user/settings";
     }
 
     @PostMapping("/update")

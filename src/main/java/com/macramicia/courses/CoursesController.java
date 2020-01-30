@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.SendFailedException;
-import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +26,7 @@ public class CoursesController {
 	@GetMapping(value = "/new")
 	public String newCourse(Model model) {
 		model.addAttribute("course", new Course());
-		return "createCourse";
+		return "courses/createCourse";
 	}
 
 	@PostMapping(value = "/create")
@@ -42,16 +39,8 @@ public class CoursesController {
 	public String showAllCourses(Model model) {
 		List<Course> allCourses = courseRepository.findAll();
 		model.addAttribute("courses", allCourses);
-		return "courses";
+		return "courses/courses";
 	}
-
-	/*
-	@PostMapping(value = "/addCourseToProfile")
-	public String addCourseToProfile(@ModelAttribute("newCourse") Course newCourse, Model model, RedirectAttributes redirectAttributes) {
-		redirectAttributes.addFlashAttribute("newCourse", newCourse);
-		model.addAttribute("newCourse", newCourse);
-		return "redirect:/courses/profile/book";
-	}*/
 
 	@DeleteMapping(value = "/remove")
 	public String deleteCourse(@ModelAttribute("course") Course course) {

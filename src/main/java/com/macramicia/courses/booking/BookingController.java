@@ -15,19 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/courses/profile")
+@RequestMapping("/courses/booking")
 public class BookingController {
 
 	private final UserService userService;
-	private final CourseRepository courseRepository;
 
 	@Autowired
-	public BookingController (UserService userService, CourseRepository courseRepository) {
+	public BookingController (UserService userService) {
 		this.userService = userService;
-		this.courseRepository = courseRepository;
 	}
 
-	@PostMapping(value = "/book")
+	@PostMapping(value = "/new")
 	public String updateMyCourses(@ModelAttribute("newCourse") Course newCourse, Principal principal) {
 		User currentUser = userService.findUserByUsername(principal.getName());
 
@@ -37,20 +35,8 @@ public class BookingController {
 
 				userService.save(currentUser);
 			}
-
-			return "redirect:/courses/profile/show";
-
+			return "redirect:/user/profile/show";
 		}
-
 		return "redirect:/";
-
-	}
-
-	@GetMapping(value = "/show")
-	public String showMyCourses(Model model, Principal principal) {
-		User currentUser = userService.findUserByUsername(principal.getName());
-
-		model.addAttribute("myCourses", currentUser.getCourses());
-		return "profile";
 	}
 }
