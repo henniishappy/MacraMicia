@@ -17,6 +17,9 @@
   <div class="container p-3 my-4 bg-secondary">
     <h1 class="macra text-center">Courses</h1>
 
+    <div align="center" th:if="${param.error}" class="alert alert-warning col-sm-6">
+      You have already booked this course.
+    </div>
     <div class="card-deck text-body" data-cy="courseCard">
       <div th:if="${courses.empty}">
         <p>No courses are currently available.</p>
@@ -45,13 +48,17 @@
               <input type="hidden" th:value="${course.venue}" th:id="venue" th:name="venue">
             </p>
             <p>
-              <label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label>
-              <input type="hidden" th:value="${course.maxSpots}" th:id="maxSpots" th:name="maxSpots">
+              <label class="card-text" th:text="'Spots remaining: ' + ${course.freeSpots} + ' of ' + ${course.maxSpots}"></label>
+              <input type="hidden" th:value="${course.freeSpots}" th:id="freeSpots" th:name="freeSpots">
+            </p>
+            <p>
+              <input type="hidden" th:value="${course.id}" th:id="id" th:name="id">
             </p>
           </div>
           <div class="card-footer">
-            <!-- active if remaining spots > 0 -->
+            <div th:if="${course.freeSpots &gt; 0}">
               <input type="submit" value="Book a Spot" class="btn btn-dark" sec:authorize="isAuthenticated() && hasAuthority('USER')">
+            </div>
           </div>
         </form>
       </div>

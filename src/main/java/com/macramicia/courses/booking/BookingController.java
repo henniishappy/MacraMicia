@@ -20,43 +20,35 @@ import java.util.Set;
 public class BookingController {
 
 	private final UserService userService;
+	private final CourseRepository courseRepository;
 
 	@Autowired
-	public BookingController (UserService userService) {
+	public BookingController (UserService userService, CourseRepository courseRepository) {
 		this.userService = userService;
+		this.courseRepository = courseRepository;
 	}
 
 	@PostMapping(value = "/new")
 	public String updateMyCourses(@ModelAttribute("newCourse") Course newCourse, Principal principal) {
+
 		User currentUser = userService.findUserByUsername(principal.getName());
+		newCourse = courseRepository.findCourseByTitle(newCourse.getTitle());
 
 		Set<Course> courses = currentUser.getCourses();
+/*
 		for (Course course : courses) {
 			if (course.getId() == newCourse.getId())
-				return "redirect:/";
-		}
+				return "redirect:/courses/all?error";
+		}*/
 
 		if (newCourse.addParticipant(currentUser)) {
-			currentUser.addCourse(newCourse);
+			courses.add(newCourse);
+			currentUser.setCourses(courses);
+			courseRepository.save(newCourse);
 			userService.save(currentUser);
-		}
-		return "redirect:/user/profile/show";
-
-		/*
-		if (!currentUser.getCourses().contains(newCourse)) {
-
-			//newCourse.addParticipant(currentUser);
-			userService.save(currentUser);
-
-
-			if (newCourse.addParticipant(currentUser)) {
-				currentUser.addCourse(newCourse);
-
-				userService.save(currentUser);
-			}
 			return "redirect:/user/profile/show";
 		}
-		return "redirect:/";
-		*/
+		else return "redirect:/courses/all?error";
+
 	}
 }

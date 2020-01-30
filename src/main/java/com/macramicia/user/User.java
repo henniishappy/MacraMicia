@@ -28,15 +28,15 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToMany(cascade = {
+    @ManyToMany/*(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE},
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY)*/
     @JoinTable(
             name = "users_course",
             joinColumns = @JoinColumn(name = "users_username", referencedColumnName = "username"),
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
-    private Set<Course> courses = new HashSet<>();
+    private Set<Course> courses;
 
 
     public String getFirstName() {
@@ -91,7 +91,14 @@ public class User {
         return courses;
     }
 
+    public void setCourses(Set<Course> courses) {
+        if(this.courses == null) courses = new HashSet<>();
+
+        this.courses = courses;
+    }
+
     public boolean addCourse(Course c) {
+        System.out.println("Adding Course with id: " + c.getId());
         return this.courses.add(c);
     }
 

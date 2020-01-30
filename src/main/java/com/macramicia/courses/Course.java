@@ -32,6 +32,8 @@ public class Course {
 
     private int maxSpots;
 
+    private int freeSpots;
+
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE},
@@ -99,7 +101,11 @@ public class Course {
     }
 
     public int getFreeSpots() {
-        return this.maxSpots - this.participants.size();
+        return this.freeSpots;
+    }
+
+    public void setFreeSpots(int freeSpots) {
+        this.freeSpots = freeSpots;
     }
 
     public boolean isFull() {
@@ -110,7 +116,7 @@ public class Course {
         if (isFull() || this.participants.contains(user)) return false;
         else {
             this.participants.add(user);
-            this.setMaxSpots(this.getMaxSpots() - 1);
+            this.freeSpots -= 1;
             return true;
         }
     }

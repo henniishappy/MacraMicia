@@ -28,7 +28,7 @@
           <p><label class="card-text" th:text="'Date: ' + ${course.date}"></label></p>
           <p><label class="card-text" th:text="'Time: ' + ${course.time}"></label></p>
           <p><label class="card-text" th:text="'Venue: ' + ${course.venue}"></label></p>
-          <p><label class="card-text" th:text="'Spots: ' + ${course.maxSpots}"></label></p>
+          <p><label class="card-text" th:text="'Spots remaining: ' + ${course.freeSpots} + ' of ' + ${course.maxSpots}"></label></p>
         </div>
       </div>
     </div>
