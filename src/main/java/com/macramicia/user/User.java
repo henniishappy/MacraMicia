@@ -98,7 +98,6 @@ public class User {
     }
 
     public boolean addCourse(Course c) {
-        System.out.println("Adding Course with id: " + c.getId());
         return this.courses.add(c);
     }
 
