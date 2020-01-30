@@ -21,9 +21,6 @@
                         <a class="nav-link" href="/" data-cy="homeNav">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/aboutus" data-cy="aboutNav">About Us</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/gallery/macramee">Gallery</a>
                     </li>
                     <li class="nav-item">
@@ -32,15 +29,18 @@
                     <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                         <a class="nav-link" href="/courses/new" data-cy="createCourseNav">Create Course</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact</a>
-                    </li>
                     <li class="nav-item" sec:authorize="isAuthenticated() && hasAuthority('USER')">
                         <a class="nav-link" href="/courses/profile/show" data-cy="profileNav">My Profile</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated() && hasAuthority('USER')">
                       <a class="nav-link" href="/user/update/show">Profile Settings</a>
-                     </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutus" data-cy="aboutNav">About Us</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item" sec:authorize="isAuthenticated()">

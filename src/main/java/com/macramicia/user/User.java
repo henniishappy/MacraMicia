@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     private String firstName;
@@ -31,9 +32,9 @@ public class User {
             CascadeType.MERGE},
             fetch = FetchType.LAZY)
     @JoinTable(
-            name = "user_course",
-            joinColumns = @JoinColumn(name = "user_username", referencedColumnName = "username"),
-            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})//@JoinColumn(name = "id"))
+            name = "users_course",
+            joinColumns = @JoinColumn(name = "users_username", referencedColumnName = "username"),
+            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
     private Set<Course> courses = new HashSet<>();
 
 
