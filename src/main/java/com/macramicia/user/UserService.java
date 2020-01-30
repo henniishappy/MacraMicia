@@ -20,6 +20,10 @@ public class UserService  {
         return userRepository.findUserByUsername(username);
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
     /*public void saveNewUser(User user) {
         String encryptedPw = encoderConfig.passwordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPw);

@@ -39,7 +39,8 @@ public class UserController {
 
     @PostMapping("/registration/create")
     public String createUser(@ModelAttribute User user) {
-        if(userService.findUserByUsername(user.getUsername()) == null) {
+        if(userService.findUserByUsername(user.getUsername()) == null &&
+                userService.findUserByEmail(user.getEmail()) == null) {
             Role role = new Role();
             role.setName("USER");
             user.setRole(role);
