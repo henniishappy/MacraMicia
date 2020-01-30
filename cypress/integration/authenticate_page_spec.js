@@ -1,10 +1,10 @@
 describe('The login page', function() {
-    it('successfully loads', function() {
+    beforeEach(() => {
         cy.visit('/user/login')
     })
 
-    it('displays the website name', function() {
-        cy.contains('Macra Micia')
+    it('greets with Login', function() {
+        cy.contains('Login')
     })
 
     it('displays the links to other pages', function() {
@@ -25,8 +25,13 @@ describe('The login page', function() {
         cy.get('[data-cy=loginInputPassword]').should('be.empty')
     })
 
-    it('displays the button in the form', function () {
-        cy.get('[data-cy=loginButton]').should('be.enabled').click()
-            .url().should('include', 'user/login/authenticate')
+    it('successfully logs in as admin', function () {
+        cy.login_as_admin()
+          .then((resp) => {
+            return resp.body;
+          })
+        cy.contains('Welcome to our Website!')
     })
 })
+
+//cy.request('POST', '/test/seed/user', { name: 'Jane' }).its('body').as('currentUser')

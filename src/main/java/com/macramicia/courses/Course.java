@@ -104,13 +104,14 @@ public class Course {
     }
 
     public boolean isFull() {
-        return getFreeSpots() == 0;
+        return this.getFreeSpots() == 0;
     }
 
     public boolean addParticipant(User user) {
-        if (isFull()) return false;
+        if (isFull() || this.participants.contains(user)) return false;
         else {
             this.participants.add(user);
+            this.setMaxSpots(this.getMaxSpots() - 1);
             return true;
         }
     }

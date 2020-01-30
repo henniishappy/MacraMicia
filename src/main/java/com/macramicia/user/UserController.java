@@ -39,12 +39,12 @@ public class UserController {
     }
 
     @PostMapping("/registration/create")
-    public String createUser(@ModelAttribute User user) throws SendFailedException {
+    public String createUser(@ModelAttribute User user) {
         Role role = new Role();
         role.setName("USER");
         user.setRole(role);
 
-        userService.saveUser(user);
+        userService.save(user);
         emailService.sendNewAccountMail(user);
         return "redirect:/user/login";
     }
@@ -56,5 +56,25 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/user/login?logout";
+    }
+
+    @GetMapping("/update/show")
+    public String showUpdateProfilePage() {
+        return "settings";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute User user, Principal principal) {
+        User currentUser = userService.findUserByUsername(principal.getName());
+
+        currentUser.setPassword(user.getPassword());
+        currentUser.setEmail(user.getEmail());
+
+        userService.save(currentUser);
+
+        emailService.sendMail(user.getEmail(), "Account Update", "This is to inform you that there has been" +
+                " a change of password and/or e-mail for your account.");
+
+        return "redirect:/";
     }
 }
