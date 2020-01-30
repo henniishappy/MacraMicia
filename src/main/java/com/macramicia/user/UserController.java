@@ -53,8 +53,14 @@ public class UserController {
             }
 
             role.addUser(user);
+            roleRepository.save(role);
+
             user.setRole(role);
             userService.save(user);
+
+
+
+
 
             emailService.sendNewAccountMail(user);
             return "redirect:/user/login";

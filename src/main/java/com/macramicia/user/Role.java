@@ -1,6 +1,7 @@
 package com.macramicia.user;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,7 @@ public class Role {
     }
 
     public void addUser(User user) {
+        if(users == null) users = new HashSet<>();
         users.add(user);
     }
 }
