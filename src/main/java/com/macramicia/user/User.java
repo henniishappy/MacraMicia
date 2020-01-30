@@ -33,8 +33,8 @@ public class User {
             fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_course",
-            joinColumns = @JoinColumn(name = "user_username", referencedColumnName = "username"),
-            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})//@JoinColumn(name = "id"))
+            joinColumns = @JoinColumn(name = "users_username", referencedColumnName = "username"),
+            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
     private Set<Course> courses = new HashSet<>();
 
 
