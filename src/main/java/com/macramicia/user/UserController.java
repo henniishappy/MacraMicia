@@ -19,13 +19,13 @@ public class UserController {
 
     private final UserService userService;
     private final EmailService emailService;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public UserController(UserService userService, EmailService emailService, RoleRepository roleRepository) {
+    public UserController(UserService userService, EmailService emailService, RoleService roleService) {
         this.userService = userService;
         this.emailService = emailService;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @GetMapping("/login")
@@ -48,7 +48,7 @@ public class UserController {
                 userService.findUserByEmail(user.getEmail()) == null) {
 
             Role role;
-            role = roleRepository.findRoleByName("USER");
+            role = roleService.findRoleByName("USER");
 
             if(role == null) {
                 role = new Role();
@@ -56,7 +56,7 @@ public class UserController {
             }
 
             role.addUser(user);
-            roleRepository.save(role);
+            roleService.save(role);
 
             user.setRole(role);
             userService.save(user);
