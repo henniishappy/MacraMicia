@@ -17,32 +17,19 @@ public class MyUserDetailsService implements UserDetailsService {
     private final User defaultUser = new User();
 
     private final UserService userService;
-    private final RoleRepository roleRepository;
 
     @Autowired
-    public MyUserDetailsService(UserService userService, RoleRepository roleRepository) {
+    public MyUserDetailsService(UserService userService) {
         this.userService = userService;
-        this.roleRepository = roleRepository;
-/*
-        if(userService.findUserByUsername("user") == null) {
-            defaultUser.setUsername("user");
-            defaultUser.setPassword("$2y$04$e6tigQZn2VrtVlKrjVxQ1eOjyXpy7qxpDuFz1Ep2Ired.jIpmj4.q");
-            defaultUser.setEmail("macramicia@gmail.com");
-            defaultUser.setFirstName("name");
-            defaultUser.setLastName("name");
+        defaultUser.setUsername("user");
+        defaultUser.setPassword("$2y$04$e6tigQZn2VrtVlKrjVxQ1eOjyXpy7qxpDuFz1Ep2Ired.jIpmj4.q");
+        defaultUser.setEmail("macramicia@gmail.com");
+        defaultUser.setFirstName("fname");
+        defaultUser.setLastName("lname");
 
-            Role role;
-            role = roleRepository.findRoleByName("ADMIN");
-
-            if(role == null) {
-                role = new Role();
-                role.setName("ADMIN");
-            }
-
-            defaultUser.setRole(role);
-            userService.save(defaultUser);
-        }*/
-
+        Role role = new Role();
+        role.setName("ADMIN");
+        defaultUser.setRole(role);
     }
 
 
