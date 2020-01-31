@@ -20,28 +20,18 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @NotNull
-    @NotEmpty
     private String title;
 
     private String description;
 
-    @NotNull
-    @NotEmpty
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @NotNull
-    @NotEmpty
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime time;
 
-    @NotNull
-    @NotEmpty
     private String venue;
 
-    @NotNull
-    @NotEmpty
     private int maxSpots;
 
     private int freeSpots;
