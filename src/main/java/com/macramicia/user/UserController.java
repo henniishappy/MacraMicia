@@ -92,8 +92,7 @@ public class UserController {
 
         userService.save(currentUser);
 
-        emailService.sendMail(user.getEmail(), "Account Update", "This is to inform you that there has been" +
-                " a change of password and/or e-mail for your account.");
+        emailService.sendUpdateUserMail(user);
 
         return "redirect:/";
     }

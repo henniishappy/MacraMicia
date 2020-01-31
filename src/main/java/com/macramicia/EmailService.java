@@ -33,6 +33,15 @@ public class EmailService {
 	}
 
 	@Async("sendMailExecutor")
+	public void sendUpdateUserMail(User user) {
+		String to = user.getEmail();
+		String subject = "Account Update";
+		String text = "This is to inform you that there has been " +
+						"a change of password and/or e-mail for your account.";
+		sendMail(to, subject, text);
+	}
+
+	@Async("sendMailExecutor")
 	public void sendMail(String to, String subject, String text) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
