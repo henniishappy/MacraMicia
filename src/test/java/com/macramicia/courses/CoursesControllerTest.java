@@ -30,7 +30,7 @@ public class CoursesControllerTest {
     public void newCourse_rendersCourseForm() throws Exception {
         mockMvc.perform(get("/courses/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("createCourse"))
+                .andExpect(view().name("courses/createCourse"))
                 .andExpect(model().attributeExists("course"));
     }
 
@@ -81,7 +81,7 @@ public class CoursesControllerTest {
 
         mockMvc.perform(get("/courses/all"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("courses"))
+                .andExpect(view().name("courses/courses"))
                 .andExpect(model().attribute("courses", allCourses));
     }
 }

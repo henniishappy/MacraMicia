@@ -19,8 +19,9 @@ class UserControllerTest {
     private final UserService userService = mock(UserService.class);
 
     private final EmailService emailService = mock(EmailService.class);
+    private final RoleRepository roleRepository = mock(RoleRepository.class);
     private final BCryptEncoderConfig encoderConfig = mock(BCryptEncoderConfig.class);
-    private final UserController userController = new UserController(userService, emailService);
+    private final UserController userController = new UserController(userService, emailService, roleRepository);
 
     private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
@@ -29,14 +30,14 @@ class UserControllerTest {
         mockMvc.perform(get(
                 "/user/login"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("authenticate"));
+                .andExpect(view().name("user/login/authenticate"));
     }
 
     @Test
     public void newUserRendersSignUpForm() throws Exception {
         mockMvc.perform(get("/user/registration"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("sign_up"))
+                .andExpect(view().name("user/registration/sign_up"))
                 .andExpect(model().attributeExists("user"));
     }
 
